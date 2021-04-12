@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "600353600081",
+    "project_id": "kotlin-pocket-accountant",
+    "storage_bucket": "kotlin-pocket-accountant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600353600081:android:416a1a15b72189989fbe70",
+        "android_client_info": {
+          "package_name": "ru.totowka.accountant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600353600081-6je6ap5vb4fdabnnfvk1e8oj65sjhdvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmxeccWwXUvVBJvpcjl3JIaRbjfWjp5VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600353600081-6je6ap5vb4fdabnnfvk1e8oj65sjhdvd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
