@@ -3,63 +3,49 @@ package ru.totowka.accountant
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.AuthUI
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import ru.totowka.accountant.backend.FirebaseRepository
 
-class AuthActivity : AppCompatActivity() {
-
-    private lateinit var mSignin: Button
-    private lateinit var mTitle: TextView
-    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val db = Firebase.firestore
+class AuthActivity : AppCompatActivity(), View.OnClickListener {
+    private val fb = FirebaseRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        mTitle = findViewById<TextView>(R.id.title)
-        mSignin = findViewById(R.id.sign_in)
-        mSignin.setOnClickListener(View.OnClickListener {
-            when (FirebaseAuth.getInstance().currentUser) {
-                null -> {
-                    val providers = arrayListOf(
-                        AuthUI.IdpConfig.GoogleBuilder().build()
-                    )
-                    startActivityForResult(
-                        AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setAvailableProviders(providers)
-                            .build(),
-                        RC_SIGN_IN
-                    )
-                }
-                else -> {
-                    startActivity(Intent(this, MainActivity::class.java))
-                }
-            }
-        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == Activity.RESULT_OK) {
-                val user = hashMapOf<String, Any>(
-                    "uid" to mAuth.currentUser!!.uid
-                )
-                db.collection("users")
-                    .document(mAuth.currentUser!!.uid)
-                    .set(user)
-                startActivity(Intent(this, MainActivity::class.java))
-            } else {
-                Toast.makeText(this, ERROR_SIGN_IN, Toast.LENGTH_SHORT).show()
+        when (requestCode) {
+            RC_SIGN_IN -> {
+                when (resultCode) {
+                    Activity.RESULT_OK -> {
+                        fb.addUserToFirestore()
+                        startActivity(Intent(this, MainActivity::class.java))
+                    }
+                    else -> {
+                        Toast.makeText(this, ERROR_SIGN_IN, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onClick(view: View?) {
+        when(view?.id) {
+            R.id.sign_in -> {
+                when (fb.isAuthorized()) {
+                    true -> {
+                        startActivity(Intent(this, MainActivity::class.java))
+                    }
+                    false -> {
+                        startActivityForResult(fb.getAuthIntent(), RC_SIGN_IN)
+                    }
+                }
             }
         }
     }
