@@ -7,21 +7,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ru.totowka.accountant.R
 import ru.totowka.accountant.backend.FirebaseRepository
-import ru.totowka.accountant.util.Product
-import ru.totowka.accountant.util.Transaction
+import ru.totowka.accountant.data.Product
+import ru.totowka.accountant.data.Transaction
 import java.lang.StringBuilder
-import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val fb = FirebaseRepository()
     lateinit var mContent: TextView
-    lateinit var mUpdateContent: Button
-    lateinit var mGetContent: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +33,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.get_content -> {
-                val stringBuilder = StringBuilder();
+                val stringBuilder = StringBuilder()
                 for (document in fb.getTransactions()) {
-                    Log.d(TAG, "${document.id}=>${document.data}")
+                    Log.d(TAG, "${document.id} => ${document.data}")
                     stringBuilder.appendln("${document.id} -> ${document.data}\n")
                 }
                 mContent.text = stringBuilder.toString()
             }
             R.id.update_content -> {
                 val transaction = Transaction(
-                    "qrinfo",
+                    "qrinfo_test",
                     Timestamp.now(),
                     listOf(
                         Product(1, 1.0, "product_1"),
@@ -59,5 +57,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         const val TAG = "MainActivity"
     }
-
 }

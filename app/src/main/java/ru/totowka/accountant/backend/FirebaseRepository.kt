@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import ru.totowka.accountant.util.Transaction
+import ru.totowka.accountant.data.Transaction
 
 class FirebaseRepository {
     private val auth = FirebaseAuth.getInstance()
@@ -16,6 +16,7 @@ class FirebaseRepository {
     fun addTransaction(transaction: Transaction) {
         val document = hashMapOf<String, Any>(
             "owner" to db.collection("users").document(auth.currentUser!!.uid),
+            "qr_info" to transaction.qr_info,
             "transaction_info" to hashMapOf(
                 "date" to transaction.date,
                 "items" to transaction.items
@@ -25,17 +26,29 @@ class FirebaseRepository {
             .set(document)
     }
 
-    fun getTransactions() : List<DocumentSnapshot> {
-        val userRef = db.collection("user").document(auth.currentUser!!.uid)
-        var documents: List<DocumentSnapshot> = ArrayList()
+    fun removeTransaction(document_id: String): Boolean {
+        return db.collection("user")
+            .document(document_id)
+            .delete().isSuccessful
+    }
+
+    fun getTransactions(): List<DocumentSnapshot> {
+        val userRef = db.collection("users").document(auth.currentUser!!.uid)
+        var documents = ArrayList<DocumentSnapshot>()
         db.collection("transactions")
             .whereEqualTo("owner", userRef).get()
-            .addOnSuccessListener { result ->
-                documents = result.documents
+            // TODO: 22.04.2021 Он почему-то не ожидает окончания и возвращает пустой массив.
+            .addOnCompleteListener{
+                    task ->
+                run {
+                    Log.d(
+                        TAG,
+                        "documents.size in process => ${task.result?.documents?.size}"
+                    )
+                    documents = task.result?.documents as ArrayList<DocumentSnapshot>
+                }
             }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
+        Log.d(TAG, "documents.size in return => ${documents.size}")
         return documents
     }
 
@@ -64,6 +77,6 @@ class FirebaseRepository {
     }
 
     companion object {
-        private const val TAG = "Firebase"
+        private const val TAG = "FirebaseRepository"
     }
 }
