@@ -5,14 +5,17 @@ import android.util.Log
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import ru.totowka.accountant.data.Transaction
+import ru.totowka.accountant.ui.MainActivity
 
-class FirebaseRepository {
-    private val auth = FirebaseAuth.getInstance()
-    private val db = Firebase.firestore
-
+class FirebaseRepository(val auth: FirebaseAuth = FirebaseAuth.getInstance(),
+                         val db: FirebaseFirestore = Firebase.firestore) {
     fun addTransaction(transaction: Transaction) {
         val document = hashMapOf<String, Any>(
             "owner" to db.collection("users").document(auth.currentUser!!.uid),
@@ -32,24 +35,19 @@ class FirebaseRepository {
             .delete().isSuccessful
     }
 
-    fun getTransactions(): List<DocumentSnapshot> {
-        val userRef = db.collection("users").document(auth.currentUser!!.uid)
-        var documents = ArrayList<DocumentSnapshot>()
-        db.collection("transactions")
-            .whereEqualTo("owner", userRef).get()
-            // TODO: 22.04.2021 Он почему-то не ожидает окончания и возвращает пустой массив.
-            .addOnCompleteListener{
-                    task ->
-                run {
-                    Log.d(
-                        TAG,
-                        "documents.size in process => ${task.result?.documents?.size}"
-                    )
-                    documents = task.result?.documents as ArrayList<DocumentSnapshot>
-                }
-            }
-        Log.d(TAG, "documents.size in return => ${documents.size}")
-        return documents
+    suspend fun getTransactions(): List<DocumentSnapshot>? = withContext(Dispatchers.IO){
+        return@withContext try {
+            val userRef = db.collection("users").document(auth.currentUser!!.uid)
+            val data = db.collection("transactions")
+                .whereEqualTo("owner", userRef)
+                .get()
+                .await()
+
+            Log.d(MainActivity.TAG, "data.documents.size => ${data.documents.size}")
+            data.documents
+        } catch (e: Exception) {
+            null
+        }
     }
 
     fun addUser() {

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="FirebaseRepository" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c46eff91-817e-435c-8c82-c1f8b90a0e69" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/totowka/accountant/backend/FirebaseRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/totowka/accountant/backend/FirebaseRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/totowka/accountant/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/totowka/accountant/ui/MainActivity.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[f006b606]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Accountant" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Accountant" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Accountant" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Accountant" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Accountant" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
+        <option value="JUnit5 Test Class" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1qycbWDApp10hDreZPJpNCkHk9M" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="f006b606" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-04-22T10:06:32.027Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/ru/totowka/accountant/backend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/font" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.totowka.accountant.backend" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tigra\Desktop\Accountant\app\src\main\res" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="ru.totowka.accountant.ui" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tigra\Desktop\Accountant\app\src\main\res\font" />
+      <recent name="C:\Users\tigra\Desktop\Accountant\app\src\main\assets\font" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="ExampleUnitTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Accountant.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.totowka.accountant.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.totowka.accountant" />
+      <option name="MAIN_CLASS_NAME" value="ru.totowka.accountant.ExampleUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FirebaseRepositoryTest.addTransaction" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Accountant.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.totowka.accountant.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.totowka.accountant.backend" />
+      <option name="MAIN_CLASS_NAME" value="ru.totowka.accountant.backend.FirebaseRepositoryTest" />
+      <option name="METHOD_NAME" value="addTransaction" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="Accountant.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Accountant [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Accountant" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="FirebaseRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Accountant.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.totowka.accountant.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.totowka.accountant.backend" />
+      <option name="MAIN_CLASS_NAME" value="ru.totowka.accountant.backend.FirebaseRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FirebaseRepositoryTest" />
+        <item itemvalue="Android JUnit.FirebaseRepositoryTest.addTransaction" />
+        <item itemvalue="Android JUnit.ExampleUnitTest" />
+        <item itemvalue="Gradle.Accountant" />
+        <item itemvalue="Gradle.Accountant [build]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c46eff91-817e-435c-8c82-c1f8b90a0e69" name="Default Changelist" comment="" />
+      <created>1618055341329</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618055341329</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="200" y="110" key="#PSD" timestamp="1619111903342">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="200" y="110" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1619111903342" />
+    <state x="413" y="119" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1618252398093">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="119" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1618252398093" />
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618925519144">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1618925519144" />
+    <state x="474" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1618927191960">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="474" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1618927191960" />
+    <state x="333" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1618955783526">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="333" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1618955783526" />
+    <state x="462" y="142" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1618953744889">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="462" y="142" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1618953744889" />
+    <state x="263" y="119" key="AndroidCreateResourceDirectoryDialog" timestamp="1618598614495">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="119" key="AndroidCreateResourceDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1618598614495" />
+    <state x="363" y="119" key="Downloadable.Font.Dialog.Size" timestamp="1618599247407">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="363" y="119" key="Downloadable.Font.Dialog.Size/0.0.1366.728@0.0.1366.728" timestamp="1618599247407" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1618736689725">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1618736689724" />
+    <state width="1322" height="178" key="GridCell.Tab.0.bottom" timestamp="1619112186236">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1619112186236" />
+    <state width="1322" height="178" key="GridCell.Tab.0.center" timestamp="1619112186236">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1619112186236" />
+    <state width="1322" height="178" key="GridCell.Tab.0.left" timestamp="1619112186236">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1619112186236" />
+    <state width="1322" height="178" key="GridCell.Tab.0.right" timestamp="1619112186236">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1619112186236" />
+    <state width="1322" height="178" key="GridCell.Tab.1.bottom" timestamp="1619112186237">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1619112186237" />
+    <state width="1322" height="178" key="GridCell.Tab.1.center" timestamp="1619112186237">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1619112186237" />
+    <state width="1322" height="178" key="GridCell.Tab.1.left" timestamp="1619112186237">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1619112186237" />
+    <state width="1322" height="178" key="GridCell.Tab.1.right" timestamp="1619112186237">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="178" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1619112186237" />
+    <state x="120" y="0" key="ScreenshotViewer.Dimensions" timestamp="1618581669730">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="120" y="0" key="ScreenshotViewer.Dimensions/0.0.1366.728@0.0.1366.728" timestamp="1618581669730" />
+    <state x="184" y="9" key="SettingsEditor" timestamp="1619008130145">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1619008130145" />
+    <state x="499" y="142" key="chooseDestDirectoryDialog" timestamp="1619046320719">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="499" y="142" key="chooseDestDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1619046320719" />
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618956309125">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1618956309125" />
+    <state x="390" y="0" width="585" height="728" key="find.popup" timestamp="1619114590652">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="0" width="585" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1619114590652" />
+    <state x="454" y="150" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog" timestamp="1619046320734">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="454" y="150" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog/0.0.1366.728@0.0.1366.728" timestamp="1619046320734" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1619083629886">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1619083629886" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1619114638320">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1619114638320" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="documents" language="kotlin" />
+        <watch expression="task.result" language="kotlin" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

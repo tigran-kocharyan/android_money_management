@@ -6,15 +6,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.DocumentSnapshot
+import kotlinx.coroutines.launch
 import ru.totowka.accountant.R
 import ru.totowka.accountant.backend.FirebaseRepository
 import ru.totowka.accountant.data.Product
 import ru.totowka.accountant.data.Transaction
-import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -34,11 +33,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.get_content -> {
                 val stringBuilder = StringBuilder()
-                for (document in fb.getTransactions()) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-                    stringBuilder.appendln("${document.id} -> ${document.data}\n")
+
+                lifecycleScope.launch {
+                    val documents: List<DocumentSnapshot> = fb.getTransactions() ?: ArrayList()
+                    for (document in documents) {
+                        Log.d(TAG, "${document.id} => ${document.data}")
+                        stringBuilder.appendln("${document.id} -> ${document.data}\n")
+                    }
+                    mContent.text = stringBuilder.toString()
                 }
-                mContent.text = stringBuilder.toString()
             }
             R.id.update_content -> {
                 val transaction = Transaction(
