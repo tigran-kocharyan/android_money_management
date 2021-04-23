@@ -1,6 +1,4 @@
-package ru.totowka.accountant.util
-
-import com.google.firebase.Timestamp
+package ru.totowka.accountant.data
 
 class Product(val amount: Int, val price: Double, val title: String)  {
     fun toHashMap() : HashMap<String, Any>{

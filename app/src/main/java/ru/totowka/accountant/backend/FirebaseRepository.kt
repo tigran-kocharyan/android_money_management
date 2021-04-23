@@ -5,17 +5,21 @@ import android.util.Log
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import ru.totowka.accountant.util.Transaction
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import ru.totowka.accountant.data.Transaction
+import ru.totowka.accountant.ui.MainActivity
 
-class FirebaseRepository {
-    private val auth = FirebaseAuth.getInstance()
-    private val db = Firebase.firestore
-
+class FirebaseRepository(val auth: FirebaseAuth = FirebaseAuth.getInstance(),
+                         val db: FirebaseFirestore = Firebase.firestore) {
     fun addTransaction(transaction: Transaction) {
         val document = hashMapOf<String, Any>(
             "owner" to db.collection("users").document(auth.currentUser!!.uid),
+            "qr_info" to transaction.qr_info,
             "transaction_info" to hashMapOf(
                 "date" to transaction.date,
                 "items" to transaction.items
@@ -25,18 +29,25 @@ class FirebaseRepository {
             .set(document)
     }
 
-    fun getTransactions() : List<DocumentSnapshot> {
-        val userRef = db.collection("user").document(auth.currentUser!!.uid)
-        var documents: List<DocumentSnapshot> = ArrayList()
-        db.collection("transactions")
-            .whereEqualTo("owner", userRef).get()
-            .addOnSuccessListener { result ->
-                documents = result.documents
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
-        return documents
+    fun removeTransaction(document_id: String): Boolean {
+        return db.collection("user")
+            .document(document_id)
+            .delete().isSuccessful
+    }
+
+    suspend fun getTransactions(): List<DocumentSnapshot>? = withContext(Dispatchers.IO){
+        return@withContext try {
+            val userRef = db.collection("users").document(auth.currentUser!!.uid)
+            val data = db.collection("transactions")
+                .whereEqualTo("owner", userRef)
+                .get()
+                .await()
+
+            Log.d(MainActivity.TAG, "data.documents.size => ${data.documents.size}")
+            data.documents
+        } catch (e: Exception) {
+            null
+        }
     }
 
     fun addUser() {
@@ -64,6 +75,6 @@ class FirebaseRepository {
     }
 
     companion object {
-        private const val TAG = "Firebase"
+        private const val TAG = "FirebaseRepository"
     }
 }
