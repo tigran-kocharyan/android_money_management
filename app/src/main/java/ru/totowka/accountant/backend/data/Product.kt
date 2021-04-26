@@ -1,8 +1,8 @@
-package ru.totowka.accountant.data
+package ru.totowka.accountant.backend.data
 
 class Product(val amount: Int, val price: Double, val title: String)  {
-    fun toHashMap() : HashMap<String, Any>{
-        return hashMapOf<String, Any>(
+    fun toMap() : HashMap<String, Any>{
+        return hashMapOf(
             "amount" to amount,
             "summary" to price,
             "title" to title

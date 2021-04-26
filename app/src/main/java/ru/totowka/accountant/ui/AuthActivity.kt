@@ -8,15 +8,14 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ru.totowka.accountant.R
-import ru.totowka.accountant.backend.FirebaseRepository
+import ru.totowka.accountant.Controller
 
 class AuthActivity : AppCompatActivity(), View.OnClickListener {
-    private val fb = FirebaseRepository()
+    private val controller = Controller()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-
         findViewById<Button>(R.id.sign_in).setOnClickListener(this)
     }
 
@@ -26,30 +25,21 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
             RC_SIGN_IN -> {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
-                        fb.addUser()
+                        controller.addUser()
                         startActivity(Intent(this, MainActivity::class.java))
                     }
-                    else -> {
-                        Toast.makeText(this,
-                            ERROR_SIGN_IN, Toast.LENGTH_SHORT).show()
-                    }
+                    else -> Toast.makeText(this, ERROR_SIGN_IN, Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
     override fun onClick(view: View?) {
-        when(view?.id) {
+        when (view?.id) {
             R.id.sign_in -> {
-                when (fb.isAuthorized()) {
-                    true -> {
-                        startActivity(Intent(this, MainActivity::class.java))
-                    }
-                    false -> {
-                        startActivityForResult(fb.getAuthIntent(),
-                            RC_SIGN_IN
-                        )
-                    }
+                when (controller.isAuthorized()) {
+                    true -> startActivity(Intent(this, MainActivity::class.java))
+                    false -> startActivityForResult(controller.getAuthIntent(), RC_SIGN_IN)
                 }
             }
         }
