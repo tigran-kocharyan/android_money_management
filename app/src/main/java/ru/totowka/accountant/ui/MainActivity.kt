@@ -8,8 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
+import com.ramotion.foldingcell.FoldingCell
 import kotlinx.coroutines.launch
 import ru.totowka.accountant.R
 import ru.totowka.accountant.Controller
@@ -20,13 +23,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val controller = Controller()
     lateinit var mContent: TextView
+    lateinit var mTransactions: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mContent = findViewById(R.id.content)
-        mContent.movementMethod = ScrollingMovementMethod()
+        mTransactions = findViewById(R.id.transactions)
+        mTransactions.layoutManager = LinearLayoutManager(this);
+
         findViewById<Button>(R.id.update_content).setOnClickListener(this)
         findViewById<Button>(R.id.get_content).setOnClickListener(this)
     }
@@ -34,20 +40,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.get_content -> {
-                val stringBuilder = StringBuilder()
-
                 lifecycleScope.launch {
-                    val documents: List<DocumentSnapshot> = controller.getTransactions() ?: ArrayList()
-                    for (document in documents) {
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                        stringBuilder.appendln("${document.id} -> ${document.data}\n")
-                    }
-                    mContent.text = stringBuilder.toString()
+                    mTransactions.adapter = TransactionAdapter(controller.getTransactions())
                 }
             }
             R.id.update_content -> {
                 val transaction = controller.scanQR(
-                    "t=20210425T2100&s=238.38&fn=9282440300926607&i=12689&fp=3257250560&n=1")
+                    "t=20210425T2100&s=238.38&fn=9282440300926607&i=12689&fp=3257250560&n=1"
+                )
                 controller.addTransaction(transaction)
             }
         }
