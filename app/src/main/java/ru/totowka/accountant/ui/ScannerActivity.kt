@@ -1,0 +1,98 @@
+package ru.totowka.accountant.ui
+
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.budiyev.android.codescanner.*
+import ru.totowka.accountant.R
+
+class ScannerActivity : AppCompatActivity() {
+    private lateinit var codeScanner: CodeScanner
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_scanner)
+
+        val permission = ContextCompat.checkSelfPermission(
+            this, Manifest.permission.CAMERA
+        )
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_REQUEST_CODE
+            )
+        }
+        codeScanner()
+    }
+
+    private fun codeScanner() {
+        val scannerView = findViewById<CodeScannerView>(R.id.scanner_view)
+        codeScanner = CodeScanner(this, scannerView)
+        codeScanner.apply {
+            camera = CodeScanner.CAMERA_BACK
+            formats = CodeScanner.TWO_DIMENSIONAL_FORMATS
+            autoFocusMode = AutoFocusMode.SAFE
+            scanMode = ScanMode.SINGLE
+            isAutoFocusEnabled = true
+            isFlashEnabled = false
+
+            decodeCallback = DecodeCallback {
+                runOnUiThread {
+                    val intent = Intent()
+                    intent.putExtra("qr", it.text.toString())
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
+            }
+
+            errorCallback = ErrorCallback {
+                runOnUiThread {
+                    val intent = Intent()
+                    setResult(RESULT_CANCELED, intent)
+                    finish()
+                }
+            }
+        }
+
+        scannerView.setOnClickListener {
+            codeScanner.startPreview()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED)
+                    Toast.makeText(
+                        this, "Allow CAMERA in order to use QR-scanner",
+                        Toast.LENGTH_SHORT
+                    ).show()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        codeScanner.startPreview()
+    }
+
+    override fun onPause() {
+        codeScanner.releaseResources()
+        super.onPause()
+    }
+
+    companion object {
+        const val TAG = "Scanner"
+        const val CAMERA_REQUEST_CODE = 777
+    }
+}

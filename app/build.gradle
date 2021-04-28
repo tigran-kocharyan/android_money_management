@@ -48,5 +48,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'com.ramotion.foldingcell:folding-cell:1.2.3'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
     testImplementation 'junit:junit:4.13.2'
 }

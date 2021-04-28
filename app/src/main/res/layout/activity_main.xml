@@ -39,19 +39,28 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/update_content"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="1"
-            android:text="Update Content" />
-
-        <Button
             android:id="@+id/get_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Get Content" />
     </LinearLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/read_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:backgroundTint="@color/purple_500"
+            android:contentDescription="Add Transaction"
+            android:src="@drawable/ic_add"
+            android:tint="#FFFFFF"
+            app:tint="@null" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

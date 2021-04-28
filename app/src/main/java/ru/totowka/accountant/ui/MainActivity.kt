@@ -1,23 +1,20 @@
 package ru.totowka.accountant.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentSnapshot
-import com.ramotion.foldingcell.FoldingCell
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 import ru.totowka.accountant.R
 import ru.totowka.accountant.Controller
-import ru.totowka.accountant.backend.data.Product
-import ru.totowka.accountant.backend.data.Transaction
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -33,7 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTransactions = findViewById(R.id.transactions)
         mTransactions.layoutManager = LinearLayoutManager(this);
 
-        findViewById<Button>(R.id.update_content).setOnClickListener(this)
+        findViewById<FloatingActionButton>(R.id.read_qr).setOnClickListener(this)
         findViewById<Button>(R.id.get_content).setOnClickListener(this)
     }
 
@@ -44,16 +41,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     mTransactions.adapter = TransactionAdapter(controller.getTransactions())
                 }
             }
-            R.id.update_content -> {
-                val transaction = controller.scanQR(
-                    "t=20210425T2100&s=238.38&fn=9282440300926607&i=12689&fp=3257250560&n=1"
+            R.id.read_qr -> {
+                startActivityForResult(
+                    Intent(this, ScannerActivity::class.java),
+                    REQUEST_QR
                 )
-                controller.addTransaction(transaction)
             }
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            REQUEST_QR -> if (resultCode == Activity.RESULT_OK) {
+                data?.getStringExtra("qr")?.let {
+                    controller.addTransaction(controller.scanQR(it))
+                }
+            } else {
+                Toast.makeText(this, "QR Scanning Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     companion object {
         const val TAG = "MainActivity"
+        const val REQUEST_QR = 1661
     }
 }
