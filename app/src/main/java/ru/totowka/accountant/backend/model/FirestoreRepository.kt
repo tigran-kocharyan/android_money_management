@@ -1,21 +1,20 @@
 package ru.totowka.accountant.backend.model
 
 import android.util.Log
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import ru.totowka.accountant.backend.data.Transaction
-import ru.totowka.accountant.ui.MainActivity
 
 class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
     fun addTransaction(transaction: Transaction, owner: String) {
         val document = hashMapOf<String, Any>(
             "owner" to db.collection("users").document(owner),
-            "transaction_info" to transaction.toMap()
+            "transaction_info" to transaction
             )
         db.collection("transactions").document()
             .set(document)
@@ -27,7 +26,7 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
             .delete().isSuccessful
     }
 
-    suspend fun getTransactions(owner: String): List<DocumentSnapshot>? = withContext(Dispatchers.IO){
+    suspend fun getTransactions(owner: String): List<Transaction>? = withContext(Dispatchers.IO){
         return@withContext try {
             val userRef = db.collection("users").document(owner)
             val data = db.collection("transactions")
@@ -35,9 +34,16 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
                 .get()
                 .await()
 
-            Log.d(MainActivity.TAG, "data.documents.size => ${data.documents.size}")
-            data.documents
+            val result = ArrayList<Transaction>()
+            for (document in data.documents ) {
+                if(document != null) {
+                    result.add(document.getField<Transaction>("transaction_info")!!)
+                    Log.d(TAG, "Added getField => ${result.size}")
+                }
+            }
+            result
         } catch (e: Exception) {
+            Log.d(TAG, e.printStackTrace().toString())
             null
         }
     }

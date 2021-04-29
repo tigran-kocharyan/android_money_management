@@ -11,13 +11,12 @@ import ru.totowka.accountant.backend.model.TransactionScannerStub
 class Controller(
     val fs: FirestoreRepository = FirestoreRepository(),
     val auth: AuthRepository = AuthRepository(),
-    val scanner: TransactionScannerStub = TransactionScannerStub()) {
+    val scanner: TransactionScannerStub = TransactionScannerStub()
+) {
 
     fun addUser() {
-        when (auth.getUserID()) {
-            null -> throw AutorizationException("User should be authorized!")
-            else -> fs.addUser(auth.getUserID()!!)
-        }
+        auth.getUserID()?.let { fs.addUser(it) }
+            ?: throw AutorizationException(AUTH_ERROR)
     }
 
     fun getAuthIntent(): Intent {
@@ -28,15 +27,21 @@ class Controller(
         return auth.isAuthorized()
     }
 
-    suspend fun getTransactions(): List<DocumentSnapshot>? {
+    suspend fun getTransactions(): List<Transaction> {
         return auth.getUserID()?.let { fs.getTransactions(it) }
+            ?: throw AutorizationException(AUTH_ERROR)
     }
 
     fun addTransaction(transaction: Transaction) {
         auth.getUserID()?.let { fs.addTransaction(transaction, it) }
+            ?: throw AutorizationException(AUTH_ERROR)
     }
 
-    fun scanQR(qr: String) : Transaction{
+    fun scanQR(qr: String): Transaction {
         return scanner.getTransactionInfo(qr)
+    }
+
+    companion object {
+        const val AUTH_ERROR = "The user isn't authorized"
     }
 }

@@ -1,4 +1,4 @@
-package ru.totowka.accountant.ui
+package ru.totowka.accountant.frontend.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +15,12 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (controller.isAuthorized()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
         setContentView(R.layout.activity_auth)
         findViewById<Button>(R.id.sign_in).setOnClickListener(this)
     }
