@@ -1,8 +1,8 @@
 package ru.totowka.accountant.frontend.ui
 
+import android.os.Bundle
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -41,10 +41,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 lifecycleScope.launch {
                     mTransactions.adapter =
                         TransactionAdapter(
-                            controller.getTransactions()
+                            controller.getTransactions().map {
+                                TransactionAdapter.TransactionState(
+                                    data = it
+                                )
+                            }
                         )
                 }
             }
+
             R.id.read_qr -> {
                 startActivityForResult(
                     Intent(this, ScannerActivity::class.java),

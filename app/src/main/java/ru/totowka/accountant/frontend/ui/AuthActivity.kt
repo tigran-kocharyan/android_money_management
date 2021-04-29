@@ -16,7 +16,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (controller.isAuthorized()) {
+        if(controller.isAuthorized()) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

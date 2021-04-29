@@ -52,11 +52,7 @@ class ScannerActivity : AppCompatActivity() {
             }
 
             errorCallback = ErrorCallback {
-                runOnUiThread {
-                    val intent = Intent()
-                    setResult(RESULT_CANCELED, intent)
-                    finish()
-                }
+                codeScanner.startPreview()
             }
         }
 
@@ -73,10 +69,7 @@ class ScannerActivity : AppCompatActivity() {
         when (requestCode) {
             CAMERA_REQUEST_CODE -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-                    Toast.makeText(
-                        this, "Allow CAMERA in order to use QR-scanner",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    finish()
             }
         }
     }
