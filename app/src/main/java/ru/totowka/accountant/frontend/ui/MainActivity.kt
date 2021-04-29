@@ -1,4 +1,4 @@
-package ru.totowka.accountant.ui
+package ru.totowka.accountant.frontend.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 import ru.totowka.accountant.R
 import ru.totowka.accountant.Controller
+import ru.totowka.accountant.frontend.adapter.TransactionAdapter
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -38,7 +39,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.get_content -> {
                 lifecycleScope.launch {
-                    mTransactions.adapter = TransactionAdapter(controller.getTransactions())
+                    mTransactions.adapter =
+                        TransactionAdapter(
+                            controller.getTransactions()
+                        )
                 }
             }
             R.id.read_qr -> {

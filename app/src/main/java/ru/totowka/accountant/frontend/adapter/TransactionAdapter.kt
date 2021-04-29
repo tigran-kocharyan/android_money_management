@@ -1,13 +1,10 @@
-package ru.totowka.accountant.ui
+package ru.totowka.accountant.frontend.adapter
 
 import android.view.LayoutInflater
-import android.view.SurfaceControl
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.DocumentSnapshot
 import ru.totowka.accountant.R
 import ru.totowka.accountant.backend.data.Transaction
 

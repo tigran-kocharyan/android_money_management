@@ -1,8 +1,6 @@
 package ru.totowka.accountant.backend.model
 
 import android.util.Log
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
@@ -11,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import ru.totowka.accountant.backend.data.Transaction
-import ru.totowka.accountant.ui.MainActivity
 
 class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
     fun addTransaction(transaction: Transaction, owner: String) {

@@ -1,4 +1,4 @@
-package ru.totowka.accountant.ui
+package ru.totowka.accountant.frontend.ui
 
 import android.Manifest
 import android.content.Intent

@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Accountant">
-        <activity android:name=".ui.MainActivity"/>
-        <activity android:name=".ui.ScannerActivity"/>
-        <activity android:name=".ui.AuthActivity">
+        <activity android:name="ru.totowka.accountant.frontend.ui.MainActivity"/>
+        <activity android:name="ru.totowka.accountant.frontend.ui.ScannerActivity"/>
+        <activity android:name="ru.totowka.accountant.frontend.ui.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
