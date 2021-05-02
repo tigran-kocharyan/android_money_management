@@ -1,46 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@color/background"
-        android:padding="16dp">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refreshSwipe"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/transactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/transactions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/read_qr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/secondaryColor"
+        android:contentDescription="Add Transaction"
+        android:elevation="0dp"
+        android:src="@drawable/ic_add"
+        app:elevation="0dp"
+        app:tint="@null" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/read_qr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:backgroundTint="@color/secondaryColor"
-            android:contentDescription="Add Transaction"
-            android:elevation="0dp"
-            android:src="@drawable/ic_add"
-            app:elevation="0dp"
-            app:tint="@null" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
-            android:backgroundTint="@color/secondaryColor"
-            android:contentDescription="Add Transaction"
-            android:elevation="0dp"
-            android:src="@drawable/ic_refresh"
-            app:elevation="0dp"
-            app:tint="@null" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 

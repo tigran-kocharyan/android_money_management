@@ -27,20 +27,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         mTransactions = findViewById(R.id.transactions)
         mTransactions.layoutManager = LinearLayoutManager(this);
+        mTransactions.adapter = TransactionAdapter(emptyList())
 
         findViewById<FloatingActionButton>(R.id.read_qr).setOnClickListener(this)
-        findViewById<FloatingActionButton>(R.id.refresh).setOnClickListener(this)
-        findViewById<SwipeRefreshLayout>(R.id.refreshSwipe).setOnRefreshListener {
-            lifecycleScope.launch {
-                mTransactions.adapter =
-                    TransactionAdapter(
-                        controller.getTransactions().map {
-                            TransactionAdapter.TransactionState(data = it)
-                        }
-                    )
-            }
-
-            findViewById<SwipeRefreshLayout>(R.id.refreshSwipe).isRefreshing = false
+        findViewById<SwipeRefreshLayout>(R.id.refresh).setOnRefreshListener {
+            refresh()
+            findViewById<SwipeRefreshLayout>(R.id.refresh).isRefreshing = false
         }
 
     }
@@ -52,17 +44,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Intent(this, ScannerActivity::class.java),
                     REQUEST_QR
                 )
-            }
-
-            R.id.refresh -> {
-                lifecycleScope.launch {
-                    mTransactions.adapter =
-                        TransactionAdapter(
-                            controller.getTransactions().map {
-                                TransactionAdapter.TransactionState(data = it)
-                            }
-                        )
-                }
             }
         }
     }
@@ -78,6 +59,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 Toast.makeText(this, "QR Scanning Failed", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun refresh() {
+        lifecycleScope.launch {
+            mTransactions.adapter =
+                TransactionAdapter(
+                    controller.getTransactions().map {
+                        TransactionAdapter.TransactionState(data = it)
+                    }
+                )
         }
     }
 
