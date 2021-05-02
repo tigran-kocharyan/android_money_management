@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 data?.getStringExtra("qr")?.let {
                     controller.addTransaction(controller.scanQR(it))
                 }
+                refresh()
             } else {
                 Toast.makeText(this, "QR Scanning Failed", Toast.LENGTH_SHORT).show()
             }
