@@ -40,8 +40,8 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
 
         fun bind(data: Product) {
             title.text = data.title
-            amount.text = data.amount.toString()
-            price.text = (data.amount * data.price).toString()
+            amount.text = "${data.amount} X ${data.price} ₽"
+            price.text = "${data.total} ₽"
         }
     }
 }

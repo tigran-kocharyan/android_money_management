@@ -37,7 +37,13 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
             val result = ArrayList<Transaction>()
             for (document in data.documents ) {
                 if(document != null) {
-                    result.add(document.getField<Transaction>("transaction_info")!!)
+                    var transaction = document.getField<Transaction>("transaction_info")!!
+                    transaction.apply {
+                        document_id = document.id
+                        items.map{it.calculateTotal()}
+                        setTotal()
+                    }
+                    result.add(transaction)
                     Log.d(TAG, "Added getField => ${result.size}")
                 }
             }
