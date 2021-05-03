@@ -10,11 +10,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
 import ru.totowka.accountant.frontend.adapter.TransactionAdapter
+import java.time.LocalDateTime
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -35,6 +37,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             findViewById<SwipeRefreshLayout>(R.id.refresh).isRefreshing = false
         }
 
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.transaction_analytics -> {
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onClick(v: View?) {
@@ -73,6 +83,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 )
         }
     }
+
 
 
     companion object {

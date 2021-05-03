@@ -9,12 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#E1E2E1</color>
     <color name="backgroundRecyclerview">#FFFFFFFF</color>
-    <color name="primaryColor">#9ccc65</color>
+    <color name="primaryColor">#6b9b37</color>
     <color name="primaryLightColor">#cfff95</color>
     <color name="primaryDarkColor">#6b9b37</color>
-    <color name="secondaryColor">#689f38</color>
+    <color name="secondaryColor">#9ccc65</color>
     <color name="secondaryLightColor">#99d066</color>
-    <color name="secondaryDarkColor">#387002</color>
+    <color name="secondaryDarkColor">#5a9216</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#ffffff</color>
 </resources>
