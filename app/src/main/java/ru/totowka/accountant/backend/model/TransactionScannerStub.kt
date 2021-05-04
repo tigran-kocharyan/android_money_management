@@ -5,9 +5,6 @@ import com.google.firebase.Timestamp
 import ru.totowka.accountant.backend.TransactionScanner
 import ru.totowka.accountant.backend.data.Product
 import ru.totowka.accountant.backend.data.Transaction
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
 import java.util.*
 
 class TransactionScannerStub : TransactionScanner {

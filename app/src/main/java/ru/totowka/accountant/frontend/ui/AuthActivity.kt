@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import ru.totowka.accountant.R
 import ru.totowka.accountant.Controller
+import ru.totowka.accountant.R
 
 class AuthActivity : AppCompatActivity(), View.OnClickListener {
     private val controller = Controller()
@@ -16,7 +16,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if(controller.isAuthorized()) {
+        if (controller.isAuthorized()) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

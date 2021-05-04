@@ -28,9 +28,9 @@
         android:layout_below="@id/scanner_view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:textSize="26sp"
+        android:fontFamily="@font/roboto_slab"
         android:text="QR Result:"
-        android:fontFamily="@font/roboto_slab"/>
+        android:textSize="26sp" />
 
     <TextView
         android:layout_width="wrap_content"

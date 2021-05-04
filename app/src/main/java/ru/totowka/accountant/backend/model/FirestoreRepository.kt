@@ -15,7 +15,7 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
         val document = hashMapOf<String, Any>(
             "owner" to db.collection("users").document(owner),
             "transaction_info" to transaction
-            )
+        )
         db.collection("transactions").document()
             .set(document)
     }
@@ -26,7 +26,7 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
             .delete().isSuccessful
     }
 
-    suspend fun getTransactions(owner: String): List<Transaction>? = withContext(Dispatchers.IO){
+    suspend fun getTransactions(owner: String): List<Transaction>? = withContext(Dispatchers.IO) {
         return@withContext try {
             val userRef = db.collection("users").document(owner)
             val data = db.collection("transactions")
@@ -35,12 +35,12 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
                 .await()
 
             val result = ArrayList<Transaction>()
-            for (document in data.documents ) {
-                if(document != null) {
+            for (document in data.documents) {
+                if (document != null) {
                     var transaction = document.getField<Transaction>("transaction_info")!!
                     transaction.apply {
                         document_id = document.id
-                        items.map{it.calculateTotal()}
+                        items.map { it.calculateTotal() }
                         setTotal()
                     }
                     result.add(transaction)
@@ -57,9 +57,11 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
     fun addUser(uid: String) {
         db.collection("users")
             .document(uid)
-            .set(hashMapOf<String, Any>(
-                "uid" to uid
-            ))
+            .set(
+                hashMapOf<String, Any>(
+                    "uid" to uid
+                )
+            )
     }
 
     companion object {

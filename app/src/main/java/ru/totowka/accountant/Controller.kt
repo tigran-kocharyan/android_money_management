@@ -1,11 +1,10 @@
 package ru.totowka.accountant
 
 import android.content.Intent
-import com.google.firebase.firestore.DocumentSnapshot
-import ru.totowka.accountant.backend.model.AuthRepository
-import ru.totowka.accountant.backend.model.FirestoreRepository
 import ru.totowka.accountant.backend.data.Transaction
 import ru.totowka.accountant.backend.exception.AutorizationException
+import ru.totowka.accountant.backend.model.AuthRepository
+import ru.totowka.accountant.backend.model.FirestoreRepository
 import ru.totowka.accountant.backend.model.TransactionScannerStub
 
 class Controller(

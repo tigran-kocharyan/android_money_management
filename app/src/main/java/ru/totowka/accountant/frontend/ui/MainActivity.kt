@@ -7,40 +7,43 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.totowka.accountant.R
 
-
 class MainActivity : AppCompatActivity() {
 
-    val analysisFragment: Fragment = AnalysisFragment()
-    val transactionsFragment: Fragment = TransactionsFragment()
-    val fm: FragmentManager = supportFragmentManager
-    var active: Fragment = transactionsFragment
+    private val analysisFragment: Fragment = AnalysisFragment()
+    private val transactionsFragment: Fragment = TransactionsFragment()
+    private var activeFragment: Fragment = transactionsFragment
+    private val fm: FragmentManager = supportFragmentManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            fm.beginTransaction().add(R.id.fragment_container, analysisFragment, "2")
+            fm.beginTransaction().add(R.id.fragment_container, analysisFragment)
                 .hide(analysisFragment).commit();
-            fm.beginTransaction().add(R.id.fragment_container, transactionsFragment, "1")
+            fm.beginTransaction().add(R.id.fragment_container, transactionsFragment)
                 .commit();
         }
 
-        BottomNavigationView.OnNavigationItemSelectedListener {
-            when (it.getItemId()) {
-                R.id.transaction_list -> {
-                    fm.beginTransaction().hide(active).show(transactionsFragment).commit()
-                    active = transactionsFragment
-                    true
+        findViewById<BottomNavigationView>(R.id.bottom_navigation)
+            .setOnNavigationItemSelectedListener {
+                when (it.getItemId()) {
+                    R.id.transaction_list -> {
+                        fm.beginTransaction().hide(activeFragment).show(transactionsFragment)
+                            .commit()
+                        activeFragment = transactionsFragment
+                        true
+                    }
+                    R.id.transaction_analysis -> {
+                        fm.beginTransaction().hide(activeFragment).show(analysisFragment).commit()
+                        activeFragment = analysisFragment
+                        true
+                    }
+                    else -> false
                 }
-                R.id.transaction_analysis -> {
-                    fm.beginTransaction().hide(active).show(analysisFragment).commit()
-                    active = analysisFragment
-                    true
-                }
-                else -> false
             }
-        }
+
     }
 
     companion object {

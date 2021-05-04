@@ -11,7 +11,7 @@ import ru.totowka.accountant.backend.data.Product
 class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     private val values: MutableList<Product> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ProductViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.view_product, parent, false)
 

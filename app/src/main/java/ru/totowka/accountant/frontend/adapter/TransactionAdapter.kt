@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.totowka.accountant.R
 import ru.totowka.accountant.backend.data.Transaction
-import java.lang.Math.round
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
