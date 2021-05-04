@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_list"
         android:title="Transactions"/>
     <item
-        android:id="@+id/transaction_analytics"
+        android:id="@+id/transaction_analysis"
         android:enabled="true"
         android:icon="@drawable/ic_analysis"
 
