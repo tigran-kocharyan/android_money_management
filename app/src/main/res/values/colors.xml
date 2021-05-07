@@ -9,4 +9,5 @@
     <color name="primaryDarkColor">#6b9b37</color>
     <color name="secondaryColor">#9ccc65</color>
     <color name="secondaryDarkColor">#5a9216</color>
+    <color name="accentBackground">#e1e2e1</color>
 </resources>

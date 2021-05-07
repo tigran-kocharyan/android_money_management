@@ -1,4 +1,4 @@
-package ru.totowka.accountant.frontend.ui
+package ru.totowka.accountant.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.totowka.accountant.R
+import ru.totowka.accountant.presentation.fragment.AnalysisFragment
+import ru.totowka.accountant.presentation.fragment.ListFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val analysisFragment: Fragment = AnalysisFragment()
-    private val transactionsFragment: Fragment = TransactionsFragment()
+    private val analysisFragment: Fragment =
+        AnalysisFragment()
+    private val transactionsFragment: Fragment =
+        ListFragment()
     private var activeFragment: Fragment = transactionsFragment
     private val fm: FragmentManager = supportFragmentManager
 
@@ -48,6 +52,5 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "MainActivity"
-        const val REQUEST_QR = 1661
     }
 }

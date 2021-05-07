@@ -1,10 +1,12 @@
-package ru.totowka.accountant.backend.model
+package ru.totowka.accountant.data.model
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.firebase.Timestamp
-import ru.totowka.accountant.backend.TransactionScanner
-import ru.totowka.accountant.backend.data.Product
-import ru.totowka.accountant.backend.data.Transaction
+import ru.totowka.accountant.data.TransactionScanner
+import ru.totowka.accountant.data.type.Product
+import ru.totowka.accountant.data.type.Transaction
 import java.util.*
 
 class TransactionScannerStub : TransactionScanner {
@@ -19,11 +21,11 @@ class TransactionScannerStub : TransactionScanner {
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun String.toTimestamp(): Timestamp {
         Log.d(TAG, this)
         return Timestamp(
             Date(
-                // TODO: пофиксить костыли с датами.
                 this.substring(0, 4).toInt() - 1900, this.substring(4, 6).toInt() - 1,
                 this.substring(6, 8).toInt(), this.substring(9, 11).toInt(),
                 this.substring(11, 13).toInt()

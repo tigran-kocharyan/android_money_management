@@ -1,16 +1,16 @@
 package ru.totowka.accountant
 
 import android.content.Intent
-import ru.totowka.accountant.backend.data.Transaction
-import ru.totowka.accountant.backend.exception.AutorizationException
-import ru.totowka.accountant.backend.model.AuthRepository
-import ru.totowka.accountant.backend.model.FirestoreRepository
-import ru.totowka.accountant.backend.model.TransactionScannerStub
+import ru.totowka.accountant.data.AutorizationException
+import ru.totowka.accountant.data.model.AuthRepository
+import ru.totowka.accountant.data.model.FirestoreRepository
+import ru.totowka.accountant.data.model.TransactionScannerStub
+import ru.totowka.accountant.data.type.Transaction
 
 class Controller(
-    val fs: FirestoreRepository = FirestoreRepository(),
-    val auth: AuthRepository = AuthRepository(),
-    val scanner: TransactionScannerStub = TransactionScannerStub()
+    private val fs: FirestoreRepository = FirestoreRepository(),
+    private val auth: AuthRepository = AuthRepository(),
+    private val scanner: TransactionScannerStub = TransactionScannerStub()
 ) {
 
     fun addUser() {
@@ -22,9 +22,7 @@ class Controller(
         return auth.getAuthIntent()
     }
 
-    fun isAuthorized(): Boolean {
-        return auth.isAuthorized()
-    }
+    fun isAuthorized(): Boolean = auth.isAuthorized()
 
     suspend fun getTransactions(): List<Transaction> {
         return auth.getUserID()?.let { fs.getTransactions(it) }

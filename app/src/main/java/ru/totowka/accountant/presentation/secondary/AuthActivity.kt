@@ -1,4 +1,4 @@
-package ru.totowka.accountant.frontend.ui
+package ru.totowka.accountant.presentation
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
+import ru.totowka.accountant.presentation.ui.MainActivity
 
 class AuthActivity : AppCompatActivity(), View.OnClickListener {
     private val controller = Controller()
@@ -34,7 +35,10 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
                         controller.addUser()
                         startActivity(Intent(this, MainActivity::class.java))
                     }
-                    else -> Toast.makeText(this, ERROR_SIGN_IN, Toast.LENGTH_SHORT).show()
+                    else -> Toast.makeText(
+                        this,
+                        ERROR_SIGN_IN, Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -45,7 +49,10 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
             R.id.sign_in -> {
                 when (controller.isAuthorized()) {
                     true -> startActivity(Intent(this, MainActivity::class.java))
-                    false -> startActivityForResult(controller.getAuthIntent(), RC_SIGN_IN)
+                    false -> startActivityForResult(
+                        controller.getAuthIntent(),
+                        RC_SIGN_IN
+                    )
                 }
             }
         }

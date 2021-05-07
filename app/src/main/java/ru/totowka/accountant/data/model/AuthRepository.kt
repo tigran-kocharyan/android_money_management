@@ -1,4 +1,4 @@
-package ru.totowka.accountant.backend.model
+package ru.totowka.accountant.data.model
 
 import android.content.Intent
 import com.firebase.ui.auth.AuthUI

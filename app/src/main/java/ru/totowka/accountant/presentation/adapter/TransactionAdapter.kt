@@ -1,4 +1,4 @@
-package ru.totowka.accountant.frontend.adapter
+package ru.totowka.accountant.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,22 +6,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.totowka.accountant.R
-import ru.totowka.accountant.backend.data.Transaction
+import ru.totowka.accountant.data.type.Product
+import ru.totowka.accountant.data.type.Transaction
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
-class TransactionAdapter(private val values: List<TransactionState>) :
+class TransactionAdapter(private val values: ArrayList<TransactionState>) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_transaction, parent, false)
-
-        return TransactionViewHolder(
-            itemView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        TransactionViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.view_product, parent, false)
         )
-    }
 
     override fun getItemCount(): Int = values.size
 
@@ -35,7 +33,7 @@ class TransactionAdapter(private val values: List<TransactionState>) :
         var transaction_total: TextView = itemView.findViewById(R.id.transaction_total)
         var products: RecyclerView = itemView.findViewById(R.id.products)
         private lateinit var transactionState: TransactionState
-        private val adapter = ProductAdapter()
+        private val adapter = ProductAdapter(ArrayList<Product>())
 
         init {
             val parent = itemView.findViewById<ViewGroup>(R.id.parent_layout)
@@ -60,7 +58,7 @@ class TransactionAdapter(private val values: List<TransactionState>) :
         fun bind(states: TransactionState) {
             val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.CHINESE)
             transactionState = states
-            transaction_title.text = states.data.document_id
+            transaction_title.text = states.data.title
             transaction_date.text = formatter.format(states.data.date.toDate()).toString()
             transaction_total.text = "${states.data.total.roundToInt()} ₽"
 

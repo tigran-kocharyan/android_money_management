@@ -1,14 +1,15 @@
-package ru.totowka.accountant.backend.model
+package ru.totowka.accountant.data.model
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import ru.totowka.accountant.backend.data.Transaction
+import ru.totowka.accountant.data.type.Transaction
 
 class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
     fun addTransaction(transaction: Transaction, owner: String) {
@@ -16,8 +17,9 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
             "owner" to db.collection("users").document(owner),
             "transaction_info" to transaction
         )
-        db.collection("transactions").document()
-            .set(document)
+        val reference = db.collection("transactions").document()
+        transaction.document_id = reference.id
+        reference.set(document)
     }
 
     fun removeTransaction(document_id: String): Boolean {
@@ -31,7 +33,7 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
             val userRef = db.collection("users").document(owner)
             val data = db.collection("transactions")
                 .whereEqualTo("owner", userRef)
-                .get()
+                .orderBy("transaction_info.date", Query.Direction.DESCENDING).get()
                 .await()
 
             val result = ArrayList<Transaction>()
@@ -40,8 +42,8 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
                     var transaction = document.getField<Transaction>("transaction_info")!!
                     transaction.apply {
                         document_id = document.id
-                        items.map { it.calculateTotal() }
-                        setTotal()
+                        items.map { it.total = it.amount * it.price }
+                        total = items.map { it.total }.sum()
                     }
                     result.add(transaction)
                     Log.d(TAG, "Added getField => ${result.size}")

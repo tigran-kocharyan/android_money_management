@@ -1,4 +1,4 @@
-package ru.totowka.accountant.frontend.adapter
+package ru.totowka.accountant.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,19 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.totowka.accountant.R
-import ru.totowka.accountant.backend.data.Product
+import ru.totowka.accountant.data.type.Product
 
-class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
-    private val values: MutableList<Product> = mutableListOf()
+class ProductAdapter(private val values: ArrayList<Product>) :
+    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_product, parent, false)
-
-        return ProductViewHolder(
-            itemView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ProductViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.view_product, parent, false)
         )
-    }
 
     override fun getItemCount() = values.size
 

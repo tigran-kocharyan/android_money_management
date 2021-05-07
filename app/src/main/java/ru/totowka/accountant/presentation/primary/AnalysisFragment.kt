@@ -1,4 +1,4 @@
-package ru.totowka.accountant.frontend.ui
+package ru.totowka.accountant.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
