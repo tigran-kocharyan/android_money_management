@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/roboto"
             android:lines="1"
             android:paddingHorizontal="10dp"
             android:text="Title"

@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Accountant</string>
+    <string name="app_name">Money Manager</string>
+    <string-array name="time_options">
+        <item>This day</item>
+        <item>This month</item>
+        <item>This year</item>
+    </string-array>
 </resources>

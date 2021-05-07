@@ -4,6 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title:"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:boxBackgroundColor="@color/lightBackground"
+        android:background="@android:color/transparent">>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/transaction_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <LinearLayout
         android:id="@+id/date_picker"
         android:layout_width="match_parent"
@@ -11,10 +30,9 @@
         android:background="@color/lightBackground"
         android:padding="16dp"
         android:weightSum="6"
-        app:layout_constraintBottom_toTopOf="@id/products"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/title_field">
 
         <Button
             android:id="@+id/picker"
@@ -43,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
-        android:padding="16dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@id/button_save"
         app:layout_constraintTop_toBottomOf="@+id/date_picker" />
 

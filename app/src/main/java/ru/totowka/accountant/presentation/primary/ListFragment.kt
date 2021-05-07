@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -43,6 +45,16 @@ class ListFragment : Fragment(), View.OnClickListener {
             refresh()
             view.findViewById<SwipeRefreshLayout>(R.id.refresh).isRefreshing = false
         }
+
+        view.findViewById<Spinner>(R.id.time_choice).onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?,
+                                            position: Int, id: Long) {
+                    Toast.makeText(requireContext(), parent?.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
 
         view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_bar)
             .setOnMenuItemClickListener { item ->

@@ -1,55 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/top_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryColor"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
-        app:liftOnScroll="true"
-        android:backgroundTint="@color/secondaryColor">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/top_bar"
-            app:title="Money Manager"
-            app:titleTextColor="@color/white"
-            app:menu="@menu/top_main_actionbar"
-            android:foregroundTint="#FFFFFF"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            android:foregroundTint="#FFFFFF"
+            app:menu="@menu/top_main_actionbar">
 
+            <Spinner
+                android:id="@+id/time_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/time_options"
+                android:gravity="start"
+                android:theme="@style/mySpinnerItemStyle" />
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar_layout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/transactions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
             android:clipToPadding="false"
-            android:paddingBottom="60dp"/>
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="60dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_transaction"
-        android:layout_gravity="bottom|end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/secondaryColor"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="Add Transaction"
-        android:elevation="0dp"
-        android:src="@drawable/ic_add"
-        app:elevation="0dp"
-        app:tint="@null" />
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:contentDescription="Add Transaction"
+            android:elevation="0dp"
+            android:src="@drawable/ic_add"
+            app:elevation="0dp"
+            app:tint="@null" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

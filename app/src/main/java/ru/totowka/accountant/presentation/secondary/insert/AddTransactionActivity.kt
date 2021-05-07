@@ -5,7 +5,6 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TimePicker
@@ -14,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
-import kotlinx.android.synthetic.main.activity_transaction.*
+import kotlinx.android.synthetic.main.activity_add_transaction.*
 import ru.totowka.accountant.R
 import ru.totowka.accountant.data.type.Product
 import ru.totowka.accountant.data.type.Transaction
@@ -41,7 +40,7 @@ class AddTransactionActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transaction)
+        setContentView(R.layout.activity_add_transaction)
 
         products = findViewById(R.id.products)
         products.layoutManager = LinearLayoutManager(this);
@@ -60,7 +59,9 @@ class AddTransactionActivity : AppCompatActivity(), View.OnClickListener,
             R.id.button_save -> {
                 if (isPicked) {
                     val intent = Intent()
-                    val transaction = Transaction("Product", Timestamp(time), product_items)
+                    var title = transaction_title.text.toString()
+                    title = if (title.isBlank()) "Transaction" else title
+                    val transaction = Transaction(title , Timestamp(time), product_items)
                         .apply { total = items.map { it.total }.sum() }
                     intent.putExtra("transaction", transaction)
                     setResult(RESULT_OK, intent)
