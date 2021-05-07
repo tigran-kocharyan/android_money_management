@@ -3,7 +3,9 @@ package ru.totowka.accountant.presentation.fragment
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -42,22 +44,27 @@ class ListFragment : Fragment(), View.OnClickListener {
             view.findViewById<SwipeRefreshLayout>(R.id.refresh).isRefreshing = false
         }
 
+        view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_bar)
+            .setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.qr_scan -> {
+                        startActivityForResult(
+                            Intent(requireActivity(), ScannerActivity::class.java),
+                            REQUEST_QR
+                        )
+                        true
+                    }
+                    R.id.add -> {
+                        startActivityForResult(
+                            Intent(requireActivity(), AddTransactionActivity::class.java),
+                            REQUEST_TRANSACTION
+                        )
+                        true
+                    }
+                    else -> false
+                }
+            }
         return view
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.scanner -> {
-                startActivityForResult(
-                    Intent(requireActivity(), ScannerActivity::class.java),
-                    REQUEST_QR
-                )
-                return true;
-            }
-            else -> {
-                return false
-            }
-        }
     }
 
     override fun onClick(v: View?) {

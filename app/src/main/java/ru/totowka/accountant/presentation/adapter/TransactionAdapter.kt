@@ -18,7 +18,7 @@ class TransactionAdapter(private val values: ArrayList<TransactionState>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         TransactionViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.view_product, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.view_transaction, parent, false)
         )
 
     override fun getItemCount(): Int = values.size

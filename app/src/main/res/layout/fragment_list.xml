@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
@@ -14,6 +13,7 @@
         android:backgroundTint="@color/secondaryColor">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_bar"
             app:title="Money Manager"
             app:titleTextColor="@color/white"
             app:menu="@menu/top_main_actionbar"
@@ -33,22 +33,10 @@
             android:id="@+id/transactions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp" />
+            android:paddingHorizontal="10dp"
+            android:clipToPadding="false"
+            android:paddingBottom="60dp"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/read_qr"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|start"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginBottom="10dp"-->
-<!--        android:backgroundTint="@color/secondaryColor"-->
-<!--        android:contentDescription="Add Transaction"-->
-<!--        android:elevation="0dp"-->
-<!--        android:src="@drawable/ic_scanner"-->
-<!--        app:elevation="0dp"-->
-<!--        app:tint="@null" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_transaction"
