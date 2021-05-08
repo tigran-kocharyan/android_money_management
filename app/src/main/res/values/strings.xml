@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Money Manager</string>
     <string-array name="time_options">
-        <item>This day</item>
-        <item>This month</item>
-        <item>This year</item>
+        <item>Current Day</item>
+        <item>Current Month</item>
+        <item>Current Year</item>
+        <item>All Time</item>
     </string-array>
 </resources>

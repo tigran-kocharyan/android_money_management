@@ -59,10 +59,11 @@ class AddTransactionActivity : AppCompatActivity(), View.OnClickListener,
             R.id.button_save -> {
                 if (isPicked) {
                     val intent = Intent()
-                    var title = transaction_title.text.toString()
-                    title = if (title.isBlank()) "Transaction" else title
-                    val transaction = Transaction(title , Timestamp(time), product_items)
-                        .apply { total = items.map { it.total }.sum() }
+                    val transaction = Transaction(
+                        transaction_title.text.toString(),
+                        Timestamp(time),
+                        product_items
+                    ).apply { total = items.map { it.total }.sum() }
                     intent.putExtra("transaction", transaction)
                     setResult(RESULT_OK, intent)
                     finish()

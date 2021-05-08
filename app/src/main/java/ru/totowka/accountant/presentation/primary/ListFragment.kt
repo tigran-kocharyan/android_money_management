@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
+import ru.totowka.accountant.data.TimeFilter
 import ru.totowka.accountant.data.type.Transaction
 import ru.totowka.accountant.presentation.adapter.TransactionAdapter
 import ru.totowka.accountant.presentation.ui.AddTransactionActivity
@@ -25,8 +27,9 @@ import ru.totowka.accountant.presentation.ui.ScannerActivity
 
 class ListFragment : Fragment(), View.OnClickListener {
     private val controller = Controller()
-    lateinit var transactions: RecyclerView
-    var transactions_list = ArrayList<TransactionAdapter.TransactionState>()
+    private lateinit var transactions: RecyclerView
+    private lateinit var filter: TimeFilter
+    private var transactions_list = ArrayList<TransactionAdapter.TransactionState>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,11 +53,27 @@ class ListFragment : Fragment(), View.OnClickListener {
             object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?,
-                                            position: Int, id: Long) {
-                    Toast.makeText(requireContext(), parent?.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show()
+                override fun onItemSelected(
+                    parent: AdapterView<*>?, view: View?,
+                    position: Int, id: Long
+                ) {
+                    filter = when (position) {
+                        0 -> TimeFilter.CURRENT_DAY
+                        1 -> TimeFilter.CURRENT_MONTH
+                        2 -> TimeFilter.CURRENT_YEAR
+                        else -> TimeFilter.ALL_TIME
+                    }
+
+                    Toast.makeText(requireContext(), filter.name, Toast.LENGTH_SHORT).show()
                 }
             }
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.time_options,
+            R.layout.spinner_selected_layout
+        )
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+        view.findViewById<Spinner>(R.id.time_choice).adapter = adapter
 
         view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.top_bar)
             .setOnMenuItemClickListener { item ->
@@ -127,6 +146,7 @@ class ListFragment : Fragment(), View.OnClickListener {
 
     private fun addTransaction(transaction: Transaction) {
         controller.addTransaction(transaction)
+        transaction.apply { total = items.map { it.total }.sum() }
         transactions_list.add(TransactionAdapter.TransactionState(data = transaction))
         transactions.adapter?.notifyDataSetChanged()
     }
@@ -135,7 +155,7 @@ class ListFragment : Fragment(), View.OnClickListener {
     private fun refresh() {
         lifecycleScope.launch {
             transactions_list.clear()
-            transactions_list.addAll(controller.getTransactions().map {
+            transactions_list.addAll(controller.getTransactions(filter).map {
                 TransactionAdapter.TransactionState(data = it)
             } as ArrayList<TransactionAdapter.TransactionState>)
             transactions.adapter?.notifyDataSetChanged()

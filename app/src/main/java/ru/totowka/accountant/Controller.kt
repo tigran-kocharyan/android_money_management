@@ -2,6 +2,7 @@ package ru.totowka.accountant
 
 import android.content.Intent
 import ru.totowka.accountant.data.AutorizationException
+import ru.totowka.accountant.data.TimeFilter
 import ru.totowka.accountant.data.model.AuthRepository
 import ru.totowka.accountant.data.model.FirestoreRepository
 import ru.totowka.accountant.data.model.TransactionScannerStub
@@ -24,8 +25,8 @@ class Controller(
 
     fun isAuthorized(): Boolean = auth.isAuthorized()
 
-    suspend fun getTransactions(): List<Transaction> {
-        return auth.getUserID()?.let { fs.getTransactions(it) }
+    suspend fun getTransactions(filter: TimeFilter): List<Transaction> {
+        return auth.getUserID()?.let { fs.getTransactions(it, filter) }
             ?: throw AutorizationException(AUTH_ERROR)
     }
 

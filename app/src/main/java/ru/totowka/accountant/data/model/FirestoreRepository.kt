@@ -9,6 +9,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import ru.totowka.accountant.data.TimeFilter
 import ru.totowka.accountant.data.type.Transaction
 
 class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
@@ -28,33 +29,34 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
             .delete().isSuccessful
     }
 
-    suspend fun getTransactions(owner: String): List<Transaction>? = withContext(Dispatchers.IO) {
-        return@withContext try {
-            val userRef = db.collection("users").document(owner)
-            val data = db.collection("transactions")
-                .whereEqualTo("owner", userRef)
-                .orderBy("transaction_info.date", Query.Direction.DESCENDING).get()
-                .await()
+    suspend fun getTransactions(owner: String, filter: TimeFilter): List<Transaction>? =
+        withContext(Dispatchers.IO) {
+            return@withContext try {
+                val userRef = db.collection("users").document(owner)
+                val data = db.collection("transactions")
+                    .whereEqualTo("owner", userRef)
+                    .orderBy("transaction_info.date", Query.Direction.DESCENDING).get()
+                    .await()
 
-            val result = ArrayList<Transaction>()
-            for (document in data.documents) {
-                if (document != null) {
-                    var transaction = document.getField<Transaction>("transaction_info")!!
-                    transaction.apply {
-                        document_id = document.id
-                        items.map { it.total = it.amount * it.price }
-                        total = items.map { it.total }.sum()
+                val result = ArrayList<Transaction>()
+                for (document in data.documents) {
+                    if (document != null) {
+                        var transaction = document.getField<Transaction>("transaction_info")!!
+                        transaction.apply {
+                            document_id = document.id
+                            items.map { it.total = it.amount * it.price }
+                            total = items.map { it.total }.sum()
+                        }
+                        result.add(transaction)
+                        Log.d(TAG, "Added getField => ${result.size}")
                     }
-                    result.add(transaction)
-                    Log.d(TAG, "Added getField => ${result.size}")
                 }
+                result
+            } catch (e: Exception) {
+                Log.d(TAG, e.printStackTrace().toString())
+                null
             }
-            result
-        } catch (e: Exception) {
-            Log.d(TAG, e.printStackTrace().toString())
-            null
         }
-    }
 
     fun addUser(uid: String) {
         db.collection("users")
