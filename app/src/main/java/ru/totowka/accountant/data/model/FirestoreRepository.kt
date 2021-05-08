@@ -9,8 +9,12 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import ru.totowka.accountant.DateTimeUtils.Companion.toTimestamp
 import ru.totowka.accountant.data.TimeFilter
 import ru.totowka.accountant.data.type.Transaction
+import java.time.LocalDate
+import java.time.LocalDateTime
+import kotlin.collections.ArrayList
 
 class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
     fun addTransaction(transaction: Transaction, owner: String) {
@@ -33,9 +37,7 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
         withContext(Dispatchers.IO) {
             return@withContext try {
                 val userRef = db.collection("users").document(owner)
-                val data = db.collection("transactions")
-                    .whereEqualTo("owner", userRef)
-                    .orderBy("transaction_info.date", Query.Direction.DESCENDING).get()
+                val data = queryBuilder(owner, filter).get()
                     .await()
 
                 val result = ArrayList<Transaction>()
@@ -48,15 +50,43 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
                             total = items.map { it.total }.sum()
                         }
                         result.add(transaction)
-                        Log.d(TAG, "Added getField => ${result.size}")
                     }
                 }
+                Log.d(TAG, data.size().toString())
                 result
             } catch (e: Exception) {
                 Log.d(TAG, e.printStackTrace().toString())
                 null
             }
         }
+
+    private fun queryBuilder(owner: String, filter: TimeFilter): Query {
+        val userRef = db.collection("users").document(owner)
+        val query = db.collection("transactions")
+            .whereEqualTo("owner", userRef)
+            .orderBy("transaction_info.date", Query.Direction.DESCENDING)
+
+        val now  = LocalDate.now()
+
+        return when (filter) {
+            TimeFilter.CURRENT_DAY -> query.whereGreaterThanOrEqualTo(
+                "transaction_info.date", toTimestamp(
+                    LocalDateTime.of(now.year, now.month, now.dayOfMonth, 0, 0)
+                )
+            )
+            TimeFilter.CURRENT_MONTH -> query.whereGreaterThanOrEqualTo(
+                "transaction_info.date", toTimestamp(
+                    LocalDateTime.of(now.year, now.month, 1, 0, 0)
+                )
+            )
+            TimeFilter.CURRENT_YEAR -> query.whereGreaterThanOrEqualTo(
+                "transaction_info.date", toTimestamp(
+                    LocalDateTime.of(now.year, 1, 1, 0, 0)
+                )
+            )
+            else -> query
+        }
+    }
 
     fun addUser(uid: String) {
         db.collection("users")

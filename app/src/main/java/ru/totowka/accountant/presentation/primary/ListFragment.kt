@@ -27,9 +27,9 @@ import ru.totowka.accountant.presentation.ui.ScannerActivity
 
 class ListFragment : Fragment(), View.OnClickListener {
     private val controller = Controller()
-    private lateinit var transactions: RecyclerView
-    private lateinit var filter: TimeFilter
-    private var transactions_list = ArrayList<TransactionAdapter.TransactionState>()
+    lateinit var transactions: RecyclerView
+    var filter: TimeFilter = TimeFilter.CURRENT_DAY
+    var transactions_list = ArrayList<TransactionAdapter.TransactionState>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +41,6 @@ class ListFragment : Fragment(), View.OnClickListener {
         transactions = view.findViewById(R.id.transactions)
         transactions.layoutManager = LinearLayoutManager(requireActivity());
         transactions.adapter = TransactionAdapter(transactions_list)
-        refresh()
 
         view.findViewById<FloatingActionButton>(R.id.add_transaction).setOnClickListener(this)
         view.findViewById<SwipeRefreshLayout>(R.id.refresh).setOnRefreshListener {
@@ -63,11 +62,10 @@ class ListFragment : Fragment(), View.OnClickListener {
                         2 -> TimeFilter.CURRENT_YEAR
                         else -> TimeFilter.ALL_TIME
                     }
-
-                    Toast.makeText(requireContext(), filter.name, Toast.LENGTH_SHORT).show()
+                    refresh()
                 }
             }
-        val adapter = ArrayAdapter.createFromResource(
+        var adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.time_options,
             R.layout.spinner_selected_layout
@@ -145,10 +143,11 @@ class ListFragment : Fragment(), View.OnClickListener {
     }
 
     private fun addTransaction(transaction: Transaction) {
-        controller.addTransaction(transaction)
         transaction.apply { total = items.map { it.total }.sum() }
-        transactions_list.add(TransactionAdapter.TransactionState(data = transaction))
-        transactions.adapter?.notifyDataSetChanged()
+        controller.addTransaction(transaction)
+//        transactions_list.add(TransactionAdapter.TransactionState(data = transaction))
+//        transactions.adapter?.notifyDataSetChanged()
+        refresh()
     }
 
 

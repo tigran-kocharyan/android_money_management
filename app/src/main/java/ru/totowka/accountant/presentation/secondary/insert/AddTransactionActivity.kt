@@ -14,11 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import kotlinx.android.synthetic.main.activity_add_transaction.*
+import ru.totowka.accountant.DateTimeUtils.Companion.toDate
 import ru.totowka.accountant.R
 import ru.totowka.accountant.data.type.Product
 import ru.totowka.accountant.data.type.Transaction
 import ru.totowka.accountant.presentation.adapter.ProductAdapter
 import ru.totowka.accountant.presentation.secondary.insert.ProductDialogFragment
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -91,9 +94,12 @@ class AddTransactionActivity : AppCompatActivity(), View.OnClickListener,
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         hourPick = hourOfDay
         minutePick = minute
-
         isPicked = true
-        time = Date(yearPick - 1900, monthPick, dayPick, hourPick, minutePick)
+        time = getDate()
         date.text = "Time: ${dayPick}-${monthPick + 1}-${yearPick} ${hourPick}:${minutePick}"
     }
+
+    private fun getDate(): Date = toDate(
+        LocalDateTime.of(yearPick, monthPick+1, dayPick, hourPick, minutePick)
+    )
 }
