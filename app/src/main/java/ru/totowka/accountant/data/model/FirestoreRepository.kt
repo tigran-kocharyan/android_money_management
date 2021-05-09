@@ -1,6 +1,7 @@
 package ru.totowka.accountant.data.model
 
 import android.util.Log
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -9,11 +10,11 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import ru.totowka.accountant.DateTimeUtils.Companion.toTimestamp
 import ru.totowka.accountant.data.TimeFilter
 import ru.totowka.accountant.data.type.Transaction
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.ZoneId
 import kotlin.collections.ArrayList
 
 class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
@@ -36,14 +37,13 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
     suspend fun getTransactions(owner: String, filter: TimeFilter): List<Transaction>? =
         withContext(Dispatchers.IO) {
             return@withContext try {
-                val userRef = db.collection("users").document(owner)
-                val data = queryBuilder(owner, filter).get()
+                val data = buildQuery(owner, filter).get()
                     .await()
 
                 val result = ArrayList<Transaction>()
                 for (document in data.documents) {
                     if (document != null) {
-                        var transaction = document.getField<Transaction>("transaction_info")!!
+                        val transaction = document.getField<Transaction>("transaction_info")!!
                         transaction.apply {
                             document_id = document.id
                             items.map { it.total = it.amount * it.price }
@@ -60,14 +60,13 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
             }
         }
 
-    private fun queryBuilder(owner: String, filter: TimeFilter): Query {
+    private fun buildQuery(owner: String, filter: TimeFilter): Query {
         val userRef = db.collection("users").document(owner)
         val query = db.collection("transactions")
             .whereEqualTo("owner", userRef)
             .orderBy("transaction_info.date", Query.Direction.DESCENDING)
 
         val now  = LocalDate.now()
-
         return when (filter) {
             TimeFilter.CURRENT_DAY -> query.whereGreaterThanOrEqualTo(
                 "transaction_info.date", toTimestamp(
@@ -96,6 +95,12 @@ class FirestoreRepository(val db: FirebaseFirestore = Firebase.firestore) {
                     "uid" to uid
                 )
             )
+    }
+
+    private fun toTimestamp(localDateTime: LocalDateTime): Timestamp {
+        val seconds = localDateTime.atZone(ZoneId.systemDefault()).toEpochSecond()
+        val nanos = localDateTime.nano
+        return Timestamp(seconds, nanos)
     }
 
     companion object {

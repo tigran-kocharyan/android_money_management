@@ -29,7 +29,7 @@ class ListFragment : Fragment(), View.OnClickListener {
     private val controller = Controller()
     lateinit var transactions: RecyclerView
     var filter: TimeFilter = TimeFilter.CURRENT_DAY
-    var transactions_list = ArrayList<TransactionAdapter.TransactionState>()
+    private var transactions_list = ArrayList<TransactionAdapter.TransactionState>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

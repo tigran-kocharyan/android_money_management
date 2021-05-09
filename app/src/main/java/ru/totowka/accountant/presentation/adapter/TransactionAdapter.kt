@@ -1,20 +1,22 @@
 package ru.totowka.accountant.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
+import ru.totowka.accountant.data.extension.toDateString
 import ru.totowka.accountant.data.type.Product
 import ru.totowka.accountant.data.type.Transaction
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 class TransactionAdapter(private val values: ArrayList<TransactionState>) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         TransactionViewHolder(
@@ -31,6 +33,7 @@ class TransactionAdapter(private val values: ArrayList<TransactionState>) :
         var transaction_title: TextView = itemView.findViewById(R.id.transaction_title)
         var transaction_date: TextView = itemView.findViewById(R.id.transaction_date)
         var transaction_total: TextView = itemView.findViewById(R.id.transaction_total)
+        val controller = Controller()
         var products: RecyclerView = itemView.findViewById(R.id.products)
         private lateinit var transactionState: TransactionState
         private val adapter = ProductAdapter(ArrayList<Product>())
@@ -55,11 +58,11 @@ class TransactionAdapter(private val values: ArrayList<TransactionState>) :
             }
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(states: TransactionState) {
-            val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.CHINESE)
             transactionState = states
             transaction_title.text = states.data.title
-            transaction_date.text = formatter.format(states.data.date.toDate()).toString()
+            transaction_date.text = states.data.date.toDateString()
             transaction_total.text = "${states.data.total.roundToInt()} ₽"
 
             adapter.setData(states.data.items)
