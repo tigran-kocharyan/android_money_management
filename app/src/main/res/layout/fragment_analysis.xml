@@ -1,53 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout">
+    android:orientation="vertical">
 
-    <com.klim.tcharts.TChart
-        android:id="@+id/tchart"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/top_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="8dp"
-        android:padding="16dp"
-        app:backgroundColor="#785630"
-        app:detailDivisionColor="#fff"
-        app:detailLabelsFontColor="#BA1B289E"
-        app:detailLineSelectedPosition="#871893"
-        app:infoWindowBackground="#6338C6"
-        app:infoWindowShadowColor="#980A16"
-        app:infoWindowTitleColor="#117F8E"
-        app:navBordersColor="#000000"
-        app:navViewFillColor="#BA7C3838"
-        app:showTitle="true"
-        app:title="Title"
-        app:titleFontColor="#339728"
-        app:titleFontSize="16dp" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryColor"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</LinearLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_bar_analysis"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:foregroundTint="#FFFFFF"
+            app:menu="@menu/top_analysis_actionbar"></androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:padding="20dp"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:weightSum="2"-->
-    <!--        android:orientation="vertical">-->
+    <LinearLayout
+        android:id="@+id/pickers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/top_bar_layout">
 
-    <!--        <com.github.mikephil.charting.charts.LineChart-->
-    <!--            android:id="@+id/linechart"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="0dp"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"-->
-    <!--            android:layout_weight="1"/>-->
+        <LinearLayout
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <!--        <TextView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="0dp"-->
-    <!--            android:layout_weight="1"/>-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Month"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto"
+                android:gravity="start"/>
 
-    <!--    </LinearLayout>-->
+            <Spinner
+                android:id="@+id/start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/months_options" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="End Month"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"/>
+
+            <Spinner
+                android:id="@+id/end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/months_options" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pickers">
+
+    </com.github.mikephil.charting.charts.BarChart>
+</androidx.constraintlayout.widget.ConstraintLayout>

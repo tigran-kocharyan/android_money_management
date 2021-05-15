@@ -6,4 +6,19 @@
         <item>Current Year</item>
         <item>All Time</item>
     </string-array>
+
+    <string-array name="months_options">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 </resources>

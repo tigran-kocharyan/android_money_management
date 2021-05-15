@@ -65,7 +65,7 @@ class ListFragment : Fragment(), View.OnClickListener {
                     refresh()
                 }
             }
-        var adapter = ArrayAdapter.createFromResource(
+        val adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.time_options,
             R.layout.spinner_selected_layout
