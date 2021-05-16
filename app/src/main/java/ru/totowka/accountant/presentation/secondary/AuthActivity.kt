@@ -18,6 +18,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
         if (controller.isAuthorized()) {
+            controller.addUser()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

@@ -101,7 +101,7 @@ class AnalysisFragment : Fragment() {
         } else {
             Toast.makeText(
                 requireContext(),
-                "End Date should be bigger than Start Date0",
+                "End Date should be bigger than Start Date",
                 Toast.LENGTH_SHORT
             ).show()
         }

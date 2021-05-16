@@ -13,8 +13,8 @@ class TransactionScannerStub : TransactionScanner {
     override fun getTransactionInfo(qr: String): Transaction {
         return Transaction(
             qr, LocalDateTime.parse(
-                qr.substring(2, 17),
-                DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss")
+                qr.substring(2, 15),
+                DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm")
             ).toTimestamp(),
             // TODO: Получить настоящий список продуктов
             listOf(
