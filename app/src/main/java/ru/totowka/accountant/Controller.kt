@@ -1,12 +1,14 @@
 package ru.totowka.accountant
 
 import android.content.Intent
+import edu.mipt.melges.sliploader.RemoteTransactionScanner
 import ru.totowka.accountant.data.AutorizationException
 import ru.totowka.accountant.data.TimeFilter
-import ru.totowka.accountant.data.extension.*
+import ru.totowka.accountant.data.TransactionScanner
+import ru.totowka.accountant.data.extension.toLocalDate
+import ru.totowka.accountant.data.extension.toLocalDateTime
 import ru.totowka.accountant.data.model.AuthRepository
 import ru.totowka.accountant.data.model.FirestoreRepository
-import ru.totowka.accountant.data.model.TransactionScannerStub
 import ru.totowka.accountant.data.type.ChartTransactionState
 import ru.totowka.accountant.data.type.Transaction
 import java.time.LocalDateTime
@@ -14,7 +16,7 @@ import java.time.LocalDateTime
 class Controller(
     private val fs: FirestoreRepository = FirestoreRepository(),
     private val auth: AuthRepository = AuthRepository(),
-    private val scanner: TransactionScannerStub = TransactionScannerStub()
+    private val scanner: TransactionScanner = RemoteTransactionScanner()
 ) {
 
     fun addUser() {
@@ -66,7 +68,7 @@ class Controller(
             ?: throw AutorizationException(AUTH_ERROR)
     }
 
-    fun scanQR(qr: String): Transaction {
+    suspend fun scanQR(qr: String): Transaction {
         return scanner.getTransactionInfo(qr)
     }
 

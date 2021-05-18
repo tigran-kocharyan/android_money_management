@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
 import ru.totowka.accountant.data.TimeFilter
@@ -114,7 +117,12 @@ class ListFragment : Fragment(), View.OnClickListener {
             REQUEST_QR -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.getStringExtra("qr")?.let {
-                        controller.addTransaction(controller.scanQR(it))
+                        val scanResult = runBlocking {
+                            withContext(Dispatchers.IO) {
+                                controller.scanQR(it)
+                            }
+                        }
+                        controller.addTransaction(scanResult)
                     }
                     refresh()
                 } else {

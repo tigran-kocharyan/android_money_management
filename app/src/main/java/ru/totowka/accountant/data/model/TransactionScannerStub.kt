@@ -1,6 +1,13 @@
 package ru.totowka.accountant.data.model
 
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.google.firebase.Timestamp
+import edu.mipt.melges.sliploader.SlipLoaderClient
+import io.ktor.client.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.logging.*
 import ru.totowka.accountant.data.TransactionScanner
 import ru.totowka.accountant.data.extension.toTimestamp
 import ru.totowka.accountant.data.type.Product
@@ -10,7 +17,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 class TransactionScannerStub : TransactionScanner {
-    override fun getTransactionInfo(qr: String): Transaction {
+    override suspend fun getTransactionInfo(qr: String): Transaction {
         return Transaction(
             qr, LocalDateTime.parse(
                 qr.substring(2, 15),

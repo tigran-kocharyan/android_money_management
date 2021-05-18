@@ -82,7 +82,7 @@ class AnalysisFragment : Fragment() {
                     startDate.atStartOfDay(),
                     endDate.atTime(23,59)
                 )
-                val resultedStates = createTotalState(chartStates)
+                val resultedStates = createTotalState(chartStates, startDate, endDate)
                 val entries = ArrayList<BarEntry>()
 
                 for (i in 0..30) {
@@ -107,9 +107,9 @@ class AnalysisFragment : Fragment() {
         }
     }
 
-    private fun createTotalState(values: List<ChartTransactionState>) : ArrayList<Double> {
+    public fun createTotalState(values: List<ChartTransactionState>, startDate: LocalDate, endDate: LocalDate) : ArrayList<Double> {
         val startMonth = ArrayList<ChartTransactionState>().apply {
-            for (i in 1..YearMonth.of(year, startDate.month).lengthOfMonth()) {
+            for (i in 1..YearMonth.of(startDate.year, startDate.month).lengthOfMonth()) {
                 add(ChartTransactionState(0.0, LocalDate.of(year, startDate.month, i)))
             }
             while(size < 31) {
@@ -117,7 +117,7 @@ class AnalysisFragment : Fragment() {
             }
         }
         val endMonth = ArrayList<ChartTransactionState>().apply {
-            for (i in 1..YearMonth.of(year, endDate.month).lengthOfMonth()) {
+            for (i in 1..YearMonth.of(endDate.year, endDate.month).lengthOfMonth()) {
                 add(ChartTransactionState(0.0, LocalDate.of(year, endDate.month, i)))
             }
             while(size < 31) {
