@@ -23,7 +23,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
-import ru.totowka.accountant.data.TimeFilter
+import ru.totowka.accountant.data.utils.TimeFilter
 import ru.totowka.accountant.data.type.Transaction
 import ru.totowka.accountant.presentation.adapter.TransactionAdapter
 import ru.totowka.accountant.presentation.secondary.ScannerActivity

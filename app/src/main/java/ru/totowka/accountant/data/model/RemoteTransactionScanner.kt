@@ -6,7 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
-import ru.totowka.accountant.data.TransactionScanner
+import ru.totowka.accountant.data.utils.TransactionScanner
 import ru.totowka.accountant.data.extension.toTimestamp
 import ru.totowka.accountant.data.type.Product
 import ru.totowka.accountant.data.type.Transaction

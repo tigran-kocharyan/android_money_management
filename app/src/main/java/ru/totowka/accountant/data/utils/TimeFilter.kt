@@ -1,4 +1,4 @@
-package ru.totowka.accountant.data
+package ru.totowka.accountant.data.utils
 
 enum class TimeFilter {
     CURRENT_DAY,

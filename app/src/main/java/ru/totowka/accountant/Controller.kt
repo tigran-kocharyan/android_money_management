@@ -1,9 +1,9 @@
 package ru.totowka.accountant
 
 import android.content.Intent
-import ru.totowka.accountant.data.AutorizationException
-import ru.totowka.accountant.data.TimeFilter
-import ru.totowka.accountant.data.TransactionScanner
+import ru.totowka.accountant.data.utils.AutorizationException
+import ru.totowka.accountant.data.utils.TimeFilter
+import ru.totowka.accountant.data.utils.TransactionScanner
 import ru.totowka.accountant.data.extension.toLocalDate
 import ru.totowka.accountant.data.extension.toLocalDateTime
 import ru.totowka.accountant.data.model.AuthRepository

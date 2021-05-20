@@ -9,7 +9,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import ru.totowka.accountant.data.TimeFilter
+import ru.totowka.accountant.data.utils.TimeFilter
 import ru.totowka.accountant.data.extension.toTimestamp
 import ru.totowka.accountant.data.type.Transaction
 import java.time.LocalDate

@@ -1,4 +1,4 @@
-package ru.totowka.accountant.data
+package ru.totowka.accountant.data.utils
 
 import ru.totowka.accountant.data.type.Transaction
 

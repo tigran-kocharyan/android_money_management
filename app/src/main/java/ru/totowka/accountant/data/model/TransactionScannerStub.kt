@@ -1,6 +1,6 @@
 package ru.totowka.accountant.data.model
 
-import ru.totowka.accountant.data.TransactionScanner
+import ru.totowka.accountant.data.utils.TransactionScanner
 import ru.totowka.accountant.data.extension.toTimestamp
 import ru.totowka.accountant.data.type.Product
 import ru.totowka.accountant.data.type.Transaction
