@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scanner_text">1) First put QR inside the square frame.\n 2) Wait for API to response.\n3) In success, the transaction will be added to your list\n \nP.S. Works only in Russia.</string>
+</resources>

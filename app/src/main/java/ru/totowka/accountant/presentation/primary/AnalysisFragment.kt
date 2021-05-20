@@ -1,8 +1,6 @@
-package ru.totowka.accountant.presentation.fragment
+package ru.totowka.accountant.presentation.primary
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -76,13 +73,13 @@ class AnalysisFragment : Fragment() {
     }
 
     private fun drawData() {
-        if (startDate.month < endDate.month ) {
+        if (startDate.month < endDate.month) {
             lifecycleScope.launch {
                 val chartStates = controller.getChartTransactionStatesByDateRange(
                     startDate.atStartOfDay(),
-                    endDate.atTime(23,59)
+                    endDate.atTime(23, 59)
                 )
-                val resultedStates = createTotalState(chartStates)
+                val resultedStates = controller.createTotalState(chartStates, startDate, endDate)
                 val entries = ArrayList<BarEntry>()
 
                 for (i in 0..30) {
@@ -106,93 +103,4 @@ class AnalysisFragment : Fragment() {
             ).show()
         }
     }
-
-    private fun createTotalState(values: List<ChartTransactionState>) : ArrayList<Double> {
-        val startMonth = ArrayList<ChartTransactionState>().apply {
-            for (i in 1..YearMonth.of(year, startDate.month).lengthOfMonth()) {
-                add(ChartTransactionState(0.0, LocalDate.of(year, startDate.month, i)))
-            }
-            while(size < 31) {
-                add(ChartTransactionState(0.0, LocalDate.of(year, 8, size)))
-            }
-        }
-        val endMonth = ArrayList<ChartTransactionState>().apply {
-            for (i in 1..YearMonth.of(year, endDate.month).lengthOfMonth()) {
-                add(ChartTransactionState(0.0, LocalDate.of(year, endDate.month, i)))
-            }
-            while(size < 31) {
-                add(ChartTransactionState(0.0, LocalDate.of(year, 8, size)))
-            }
-        }
-        for (value in values) {
-            if (value.date.month == startDate.month) {
-                startMonth[value.date.dayOfMonth-1] = value
-            } else {
-                endMonth[value.date.dayOfMonth-1] = value
-            }
-        }
-        return ArrayList<Double>().apply {
-            for (i in 0..30) {
-                add(endMonth[i].total - startMonth[i].total)
-            }
-        }
-    }
 }
-//    private fun drawData() {
-//        lifecycleScope.launch {
-//            val chartStates = controller.getChartTransactionStates(TimeFilter.ALL_TIME)
-//            if (chartStates.size >= 5) {
-//                val keys = ArrayList<String>()
-//                val names = ArrayList<String>()
-//                val colors = ArrayList<Int>()
-//                val items = ArrayList<ChartItem>()
-//
-//                keys.add("Dates");
-//                names.add("Transactions Total Sum");
-//                colors.add(Color.RED);
-//                for (state in chartStates) {
-//                    items.add(ChartItem(state.date, listOf(state.total.toInt())));
-//                }
-//                val chartData = ChartData(keys, names, colors, items)
-//                view?.findViewById<TChart>(R.id.tchart)?.setData(chartData)
-//                view?.findViewById<TChart>(R.id.tchart)?.visibility = View.VISIBLE
-//            } else {
-//                view?.findViewById<TChart>(R.id.tchart)?.visibility  = View.INVISIBLE
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Transactions size: ${chartStates.size}\nMake it at least 5.",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
-//    }
-
-//    private fun drawMPAndroidChart() {
-//        val chartStates = controller.getChartTransactionStates(TimeFilter.ALL_TIME)
-//       val chart = view.findViewById<LineChart>(R.id.linechart)
-//        chart.setOnChartValueSelectedListener {}
-//        chart.onChartGestureListener
-
-//        chart.isDragEnabled = false
-//        chart.setScaleEnabled(false)
-//
-//        val values = ArrayList<Entry>()
-//        values.add(Entry(0f, 60f))
-//        values.add(Entry(1f, 30f))
-//        values.add(Entry(2f, 40f))
-//        values.add(Entry(3f, 90f))
-//        values.add(Entry(4f, 10f))
-//
-//        val dataSet = LineDataSet(values, "Data Set #1")
-//        dataSet.fillAlpha = 255
-//        dataSet.color = Color.RED
-//        dataSet.lineWidth = 3f
-//        dataSet.valueTextSize = 10f
-//        dataSet.fillColor = Color.BLACK
-//
-//        val dataSets = ArrayList<ILineDataSet>()
-//        dataSets.add(dataSet)
-//
-//        val lineData = LineData(dataSets)
-//        chart.data = lineData
-//    }

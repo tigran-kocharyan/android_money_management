@@ -1,4 +1,4 @@
-package ru.totowka.accountant.presentation.fragment
+package ru.totowka.accountant.presentation.primary
 
 import android.app.Activity
 import android.content.Intent
@@ -16,14 +16,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
 import ru.totowka.accountant.data.TimeFilter
 import ru.totowka.accountant.data.type.Transaction
 import ru.totowka.accountant.presentation.adapter.TransactionAdapter
-import ru.totowka.accountant.presentation.ui.AddTransactionActivity
-import ru.totowka.accountant.presentation.ui.ScannerActivity
+import ru.totowka.accountant.presentation.secondary.ScannerActivity
+import ru.totowka.accountant.presentation.secondary.insert.AddTransactionActivity
 
 class ListFragment : Fragment(), View.OnClickListener {
     private val controller = Controller()
@@ -113,10 +117,26 @@ class ListFragment : Fragment(), View.OnClickListener {
         when (requestCode) {
             REQUEST_QR -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    data?.getStringExtra("qr")?.let {
-                        controller.addTransaction(controller.scanQR(it))
+                    progressbar_db_add.visibility = View.VISIBLE
+                    view_under_progressbar.visibility = View.VISIBLE
+                    try {
+                        data?.getStringExtra("qr")?.let {
+                            val scanResult = runBlocking {
+                                withContext(Dispatchers.IO) {
+                                    controller.scanQR(it)
+                                }
+                            }
+                            controller.addTransaction(scanResult)
+                            refresh()
+                            progressbar_db_add.visibility = View.INVISIBLE
+                            view_under_progressbar.visibility = View.INVISIBLE
+                        }
+                    } catch (exception: Exception) {
+                        progressbar_db_add.visibility = View.INVISIBLE
+                        view_under_progressbar.visibility = View.INVISIBLE
+                        Toast.makeText(requireActivity(), "QR Scanning Failed", Toast.LENGTH_SHORT)
+                            .show()
                     }
-                    refresh()
                 } else {
                     Toast.makeText(requireActivity(), "QR Scanning Failed", Toast.LENGTH_SHORT)
                         .show()

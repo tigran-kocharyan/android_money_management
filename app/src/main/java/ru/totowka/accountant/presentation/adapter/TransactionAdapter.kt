@@ -11,7 +11,6 @@ import ru.totowka.accountant.R
 import ru.totowka.accountant.data.extension.toDateString
 import ru.totowka.accountant.data.type.Product
 import ru.totowka.accountant.data.type.Transaction
-import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 class TransactionAdapter(private val values: ArrayList<TransactionState>) :

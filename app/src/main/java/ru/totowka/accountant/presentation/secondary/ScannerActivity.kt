@@ -1,13 +1,16 @@
-package ru.totowka.accountant.presentation.ui
+package ru.totowka.accountant.presentation.secondary
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.budiyev.android.codescanner.*
+import kotlinx.android.synthetic.main.activity_scanner.*
+import kotlinx.android.synthetic.main.fragment_list.*
 import ru.totowka.accountant.R
 
 class ScannerActivity : AppCompatActivity() {
@@ -43,6 +46,8 @@ class ScannerActivity : AppCompatActivity() {
 
             decodeCallback = DecodeCallback {
                 runOnUiThread {
+                    progressbar_api_wait.visibility = View.VISIBLE
+                    view_under_progressbar_scanner.visibility = View.VISIBLE
                     val intent = Intent()
                     intent.putExtra("qr", it.text.toString())
                     setResult(RESULT_OK, intent)

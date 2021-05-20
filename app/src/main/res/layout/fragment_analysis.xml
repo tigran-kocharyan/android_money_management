@@ -35,19 +35,19 @@
         app:layout_constraintTop_toBottomOf="@id/top_bar_layout">
 
         <LinearLayout
-            android:layout_marginHorizontal="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Start Month"
-                android:textSize="16sp"
                 android:fontFamily="@font/roboto"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:text="Start Month"
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/start_date"
@@ -57,19 +57,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginHorizontal="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="End Month"
-                android:textSize="16sp"
                 android:fontFamily="@font/roboto"
-                android:gravity="end"/>
+                android:gravity="end"
+                android:text="End Month"
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/end_date"

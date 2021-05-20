@@ -1,4 +1,4 @@
-package ru.totowka.accountant.presentation
+package ru.totowka.accountant.presentation.secondary
 
 import android.app.Activity
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
-import ru.totowka.accountant.presentation.ui.MainActivity
+import ru.totowka.accountant.presentation.primary.MainActivity
 
 class AuthActivity : AppCompatActivity(), View.OnClickListener {
     private val controller = Controller()

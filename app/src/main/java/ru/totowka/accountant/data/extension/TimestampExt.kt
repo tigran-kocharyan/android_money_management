@@ -4,13 +4,13 @@ import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime
-import java.time.ZoneId
 import java.util.*
 
-fun Timestamp.toLocalDateTime() : LocalDateTime {
+fun Timestamp.toLocalDateTime(): LocalDateTime {
     return LocalDateTime.ofInstant(
         Instant.ofEpochSecond(this.seconds),
-        TimeZone.getDefault().toZoneId())
+        TimeZone.getDefault().toZoneId()
+    )
 }
 
 fun Timestamp.toDateString(): String {

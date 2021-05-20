@@ -1,6 +1,5 @@
 package ru.totowka.accountant.data.model
 
-import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query

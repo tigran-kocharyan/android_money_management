@@ -4,7 +4,7 @@ import android.content.Intent
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 
-class AuthRepository(val auth: FirebaseAuth = FirebaseAuth.getInstance()) {
+class AuthRepository(private val auth: FirebaseAuth = FirebaseAuth.getInstance()) {
     fun getUserID(): String? {
         return auth.currentUser?.uid
     }

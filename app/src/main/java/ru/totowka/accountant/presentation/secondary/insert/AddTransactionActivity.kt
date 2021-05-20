@@ -1,4 +1,4 @@
-package ru.totowka.accountant.presentation.ui
+package ru.totowka.accountant.presentation.secondary.insert
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -13,13 +13,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_add_transaction.*
-import ru.totowka.accountant.Controller
 import ru.totowka.accountant.R
 import ru.totowka.accountant.data.extension.toTimestamp
 import ru.totowka.accountant.data.type.Product
 import ru.totowka.accountant.data.type.Transaction
 import ru.totowka.accountant.presentation.adapter.ProductAdapter
-import ru.totowka.accountant.presentation.secondary.insert.ProductDialogFragment
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.*

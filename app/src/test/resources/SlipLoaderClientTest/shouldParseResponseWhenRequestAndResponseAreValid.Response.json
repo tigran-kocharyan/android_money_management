@@ -1,0 +1,44 @@
+{
+  "code": 1,
+  "data": {
+    "json": {
+      "code": 3,
+      "user": "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"ГАЗПРОМНЕФТЬ - ЦЕНТР\"",
+      "items": [
+        {
+          "nds": 1,
+          "sum": 297000,
+          "name": "Бензин АИ-95(АИ-95-К5)",
+          "price": 4950,
+          "ndsSum": 49500,
+          "quantity": 60,
+          "paymentType": 4,
+          "productType": 1,
+          "providerInn": "4703105075",
+          "paymentAgentByProductType": 32
+        }
+      ],
+      "nds18": 49500,
+      "userInn": "7709359770  ",
+      "dateTime": "2021-05-04T19:10:00",
+      "kktRegId": "0004036414000633    ",
+      "totalSum": 297000,
+      "creditSum": 0,
+      "fiscalSign": 4083315663,
+      "prepaidSum": 0,
+      "retailPlace": "КААЗС № 702",
+      "shiftNumber": 174,
+      "cashTotalSum": 0,
+      "provisionSum": 0,
+      "taxationType": 1,
+      "ecashTotalSum": 297000,
+      "operationType": 1,
+      "requestNumber": 509,
+      "fiscalDriveNumber": "9280440300977714",
+      "appliedTaxationType": 1,
+      "fiscalDocumentNumber": 38232,
+      "fiscalDocumentFormatVer": 2
+    },
+    "html": "<table class=\"b-check_table table\"><tbody><tr class=\"b-check_vblock-middle b-check_center\"><td colspan=\"5\">ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"ГАЗПРОМНЕФТЬ - ЦЕНТР\"<\/td><\/tr><tr class=\"b-check_vblock-middle b-check_center\"><td colspan=\"5\">ИНН 7709359770  <\/td><\/tr><tr class=\"b-check_vblock-middle b-check_center\"><td colspan=\"5\">&nbsp;<\/td><\/tr><tr class=\"b-check_vblock-middle b-check_center\"><td colspan=\"5\">04.05.2021 19:10<\/td><\/tr><tr class=\"b-check_vblock-middle b-check_center\"><td colspan=\"5\">Чек № 509<\/td><\/tr><tr class=\"b-check_vblock-middle b-check_center\"><td colspan=\"5\">Смена № 174<\/td><\/tr><tr class=\"b-check_vblock-middle b-check_center\"><td colspan=\"5\">Кассир <\/td><\/tr><tr class=\"b-check_vblock-last b-check_center\"><td colspan=\"5\">Приход<\/td><\/tr><tr><td><strong>№<\/strong><\/td><td><strong>Название<\/strong><\/td><td><strong>Цена<\/strong><\/td><td><strong>Кол.<\/strong><\/td><td><strong>Сумма<\/strong><\/td><\/tr><tr class=\"b-check_item\"><td>1<\/td><td>Бензин АИ-95(АИ-95-К5)<\/td><td>49.50<\/td><td>60<\/td><td>2970.00<\/td><\/tr><tr class=\"b-check_vblock-first\"><td colspan=\"3\" class=\"b-check_itogo\">ИТОГО:<\/td><td><\/td><td class=\"b-check_itogo\">2970.00<\/td><\/tr><tr class=\"b-check_vblock-middle\"><td colspan=\"3\">Наличные<\/td><td><\/td><td>0.00<\/td><\/tr><tr class=\"b-check_vblock-middle\"><td colspan=\"3\">Карта<\/td><td><\/td><td>2970.00<\/td><\/tr><tr class=\"b-check_vblock-middle\"><td colspan=\"3\">НДС итога чека со ставкой 20%<\/td><td><\/td><td>495.00<\/td><\/tr><tr class=\"b-check_vblock-last\"><td colspan=\"5\">ВИД НАЛОГООБЛОЖЕНИЯ: ОСН<\/td><\/tr><tr class=\"b-check_vblock-first\"><td colspan=\"5\">РЕГ.НОМЕР ККТ: 0004036414000633    <\/td><\/tr><tr class=\"b-check_vblock-middle\"><td colspan=\"5\">ЗАВОД. №: <\/td><\/tr><tr class=\"b-check_vblock-middle\"><td colspan=\"5\">ФН: 9280440300977714<\/td><\/tr><tr class=\"b-check_vblock-middle\"><td colspan=\"5\">ФД: 38232<\/td><\/tr><tr class=\"b-check_vblock-middle\"><td colspan=\"5\">ФПД#: 4083315663<\/td><\/tr><tr class=\"b-check_vblock-last\"><td colspan=\"5\" class=\"b-check_center\"><img src=\"\/qrcode\/generate?text=t%3D20210504T1910%26s%3D2970.00%26fn%3D9280440300977714%26i%3D38232%26fp%3D4083315663%26n%3D1\" alt=\"QR код чека\" width=\"35%\" loading=\"lazy\" decoding=\"async\"><\/td><\/tr><\/tbody><\/table>"
+  }
+}

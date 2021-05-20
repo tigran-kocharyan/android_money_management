@@ -5,6 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/progressbar_db_add"
+        android:visibility="invisible"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view_under_progressbar"
+        android:visibility="invisible"
+        android:background="#6A989898"/>
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/top_bar_layout"
         android:layout_width="match_parent"
@@ -26,7 +43,7 @@
                 android:id="@+id/time_choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"/>
+                android:backgroundTint="@color/white" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

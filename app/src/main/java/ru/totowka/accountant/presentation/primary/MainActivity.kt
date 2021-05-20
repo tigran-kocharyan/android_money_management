@@ -1,4 +1,4 @@
-package ru.totowka.accountant.presentation.ui
+package ru.totowka.accountant.presentation.primary
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.totowka.accountant.R
-import ru.totowka.accountant.presentation.fragment.AnalysisFragment
-import ru.totowka.accountant.presentation.fragment.ListFragment
 
 class MainActivity : AppCompatActivity() {
 

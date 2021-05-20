@@ -8,20 +8,20 @@
         android:id="@+id/title_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:hint="Title:"
+        app:boxBackgroundColor="@color/lightBackground"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:boxBackgroundColor="@color/lightBackground"
-        android:background="@android:color/transparent">>
+        app:layout_constraintTop_toTopOf="parent">>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/transaction_title"
-            android:text="Transaction"
-            android:textSize="20sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Transaction"
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

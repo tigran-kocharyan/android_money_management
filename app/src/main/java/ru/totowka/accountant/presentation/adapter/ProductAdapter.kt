@@ -37,7 +37,8 @@ class ProductAdapter(private val values: ArrayList<Product>) :
         fun bind(data: Product) {
             title.text = data.title
             amount.text = "${data.amount} X ${data.price} ₽"
-            price.text = "${data.total} ₽"
+//            price.text = "${data.total} ₽"
+            price.text = "%.2f ₽".format(data.total)
         }
     }
 }

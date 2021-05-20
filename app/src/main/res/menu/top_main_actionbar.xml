@@ -4,10 +4,10 @@
 
     <item
         android:id="@+id/add"
-        android:visible="false"
         android:icon="@drawable/ic_add_new"
         android:iconTint="@color/white"
         android:title="Add"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 
     <item
