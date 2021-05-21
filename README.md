@@ -9,7 +9,7 @@ git clone https://github.com/tigran-kocharyan/android_money_management.git
 
 ---
 
-## Description:
+## Description
 
 * Ways to input data about transaction:
 
@@ -37,17 +37,11 @@ This project is mantained by:
 5. Push your branch (git push origin my-new-feature)
 6. Create a new Pull Request
 
-## Examples:
-#### Manual input:
-![](https://user-images.githubusercontent.com/26183944/119142693-77cc6a00-ba4f-11eb-8632-ee79ec650bb0.mp4)
+## Examples
+#### ![Manual input](https://user-images.githubusercontent.com/26183944/119142693-77cc6a00-ba4f-11eb-8632-ee79ec650bb0.mp4)
 
 
-#### QR Scanning + Drawing a graph
-![](screenshots/zero.jpg)
-
-
-#### Скриншот 3. Ввод количества клиентов равного 5. Разделение клиентов по потокам и их обслуживание.
-![](screenshots/five.jpg)
+#### ![QR Scanning + Drawing a graph](https://user-images.githubusercontent.com/26183944/119144632-887ddf80-ba51-11eb-969d-86949d1602f1.mp4)
 
 
 ---
