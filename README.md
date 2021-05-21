@@ -1,6 +1,10 @@
 # Kotlin Android Application "Money Manager" 💰
 Stores all the transaction info in one app. Different ways of input with small analytics.
 
+
+---
+
+
 ## Installation
 Clone this repository and import into **Android Studio**
 ```bash
