@@ -42,8 +42,6 @@ This project is mantained by:
 
 
 #### ![QR Scanning + Drawing a graph](https://user-images.githubusercontent.com/26183944/119144632-887ddf80-ba51-11eb-969d-86949d1602f1.mp4)
-
-
 ---
 
 ## [Contacts](https://vk.com/k_tigran)
